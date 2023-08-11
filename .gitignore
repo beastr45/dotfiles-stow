@@ -1,0 +1,12 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+luac/
+nvim/.config/nvim-configs/NVsoulfire
+nvim/.config/nvim-configs/NvChad
+nvim/.config/nvim-configs/NvimSparkle

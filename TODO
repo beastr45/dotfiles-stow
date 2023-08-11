@@ -1,0 +1,9 @@
+#TODO:
+
+fix the submodues issue
+add configs for other software
+add .zsh configs
+add x configs ex: .xinitrc
+
+use the git stow plugin in order to symlink this repo w/home folder
+https://www.youtube.com/watch?v=90xMTKml9O0
