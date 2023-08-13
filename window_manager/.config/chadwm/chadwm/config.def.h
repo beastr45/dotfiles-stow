@@ -11,15 +11,15 @@ static const char *downvol[] = {"/home/bear/.dwm/volume.sh", "down", NULL};
 static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL};
 
 static const char dmenufont[]       = "monospace:size=10";
-
+static const unsigned int default_gaps = 0;
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int default_border = 0;   /* to switch back to default border after dynamic border resizing via keybinds */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = default_gaps;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = default_gaps;       /* vert inner gap between windows */
+static const unsigned int gappoh    = default_gaps;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = default_gaps;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -38,7 +38,7 @@ static const int vertpadtab         = 35;
 static const int horizpadtabi       = 15;
 static const int horizpadtabo       = 15;
 static const int scalepreview       = 4;
-static const int tag_preview        = 0;        /* 1 means enable, 0 is off */
+static const int tag_preview        = 1;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
 /* static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL}; */
 /* static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL}; */
@@ -203,25 +203,28 @@ static const Key keys[] = {
 	/* { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } }, */
 	/* { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} }, */
 
-    // inner gaps
-    { MODKEY|ShiftMask,                 XK_i,       incrigaps,      {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_i,       incrigaps,      {.i = -1 } },
 
-    // outer gaps
-    { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } },
+    //commented out resize functions to avoid confusion
 
-    // inner+outer hori, vert gaps 
-    { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_7,       incrivgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_8,       incrohgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_8,       incrohgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_9,       incrovgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_9,       incrovgaps,     {.i = -1 } },
+    /* // inner gaps */
+    /* { MODKEY|ShiftMask,                 XK_i,       incrigaps,      {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_i,       incrigaps,      {.i = -1 } }, */
+    /**/
+    /* // outer gaps */
+    /* { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } }, */
 
-    { MODKEY|ControlMask|ShiftMask,     XK_d,       defaultgaps,    {0} },
+    /* // inner+outer hori, vert gaps  */
+    /* { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_7,       incrivgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_8,       incrohgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_8,       incrohgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_9,       incrovgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_9,       incrovgaps,     {.i = -1 } }, */
+    /**/
+    /* { MODKEY|ControlMask|ShiftMask,     XK_d,       defaultgaps,    {0} }, */
 
     // layout
     { MODKEY,                           XK_t,       setlayout,      {.v = &layouts[0]} },
@@ -242,17 +245,17 @@ static const Key keys[] = {
 
     // change border size
     { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_p,       setborderpx,    {.i = +1 } },
+    { MODKEY|ShiftMask,                 XK_equal,   setborderpx,    {.i = +1 } },
     { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
 
     // kill dwm
     { MODKEY|ControlMask|ShiftMask,     XK_q,       quit,           {0} },
+    // restart
+    /* { MODKEY|ShiftMask,                 XK_r,       restart,           {0} }, */
 
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
 
-    // restart
-    /* { MODKEY|ShiftMask,                 XK_r,       restart,           {0} }, */
 
     // hide & restore windows
     { MODKEY,                           XK_e,       hidewin,        {0} },
