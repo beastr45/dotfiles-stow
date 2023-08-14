@@ -14,7 +14,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.core" },
     -- language modules
     -- https://www.lazyvim.org/extras/lang
-    { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.cmake" },
     -- import/override with your plugins

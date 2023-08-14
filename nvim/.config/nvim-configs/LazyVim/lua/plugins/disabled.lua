@@ -8,4 +8,5 @@ return {
     "neovim/nvim-lspconfig",
     opts = { autoformat = false },
   },
+  { "rcarriga/nvim-notify", enabled = false },
 }

@@ -37,7 +37,7 @@ vim.keymap.set("n", "<leader>o", "o<Esc>", opts)
 vim.keymap.set("n", "<leader>O", "O<Esc>", opts)
 
 --exit search mode
-vim.keymap.set("n", "<Esc><Esc>", ":noh <CR>", opts)
+-- vim.keymap.set("n", "<Esc><Esc>", ":noh <CR>", opts)
 
 -- -- Better window navigation
 -- vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
@@ -78,3 +78,6 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- close current buffer with <leader + b + w>
 vim.keymap.set("n", "<leader>bw", ":bw <cr>", { desc = "close buffer" })
+
+-- set zenmode keymap
+vim.keymap.set("n", "<leader>z", ":ZenMode <CR>", opts)

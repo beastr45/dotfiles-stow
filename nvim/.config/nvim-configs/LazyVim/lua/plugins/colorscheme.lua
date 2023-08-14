@@ -1,12 +1,11 @@
---empty bc no color besides default rn
-
 return {
   { "sainnhe/gruvbox-material" },
   { "catppuccin/nvim" },
+  { "sainnhe/everforest" },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "everforest",
     },
   },
 }
