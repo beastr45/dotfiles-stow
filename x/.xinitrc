@@ -27,7 +27,11 @@ filen &
 
 #if u uninstall udiskie remember to fis the unix groups
 #go to like a udiskie tutorial or smth
-udiskie -t &
+udiskie -tn &
+
+#use wmname to fix java applications not rendering properly source is at suckless website
+#not always enabled
+#wmname LG3D
 
 #enable dunst notifs y exposing DISPLAY variable and fixes a lot of other things
 systemctl --user import-environment DISPLAY &
