@@ -160,8 +160,8 @@ static const Key keys[] = {
     /* { MODKEY,                           XK_p,       spawn,          SHCMD("rofi -show drun") }, */
     /* { MODKEY|ShiftMask,                 XK_Return,  spawn,            SHCMD("alacritty")}, */
 
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = roficmd } },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show run -config ~/.config/chadwm/rofi/config.rasi") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 
 
