@@ -25,6 +25,8 @@ caffeine &
 tilda &
 filen &
 
+unclutter &
+
 #if u uninstall udiskie remember to fis the unix groups
 #go to like a udiskie tutorial or smth
 udiskie -tn &
