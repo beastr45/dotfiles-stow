@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+#kill the speech-dispatcher so it dosent get in the freaking way grr
+killall speech-dispatcher
+AUDIO_STATE=$(pacmd list-sink-inputs | grep -c 'state: RUNNING')
+echo "$AUDIO_STATE"
+if [ "$AUDIO_STATE" -gt 0 ]; then
+	alacritty -e cava &
+	sleep 2
+	ALACRITTY_PID=$!
+	wmctrl -i -r "$(wmctrl -l | grep cava | tail -1 | cut -f1 -d' ')" -b toggle,fullscreen
+	wait "$ALACRITTY_PID"
+	slock
+	# tilda -c cava && slock
+else
+	#echo "else"
+	slock
+fi
