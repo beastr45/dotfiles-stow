@@ -16,7 +16,7 @@ picom -b --vsync &
 ~/.conky/conky-startup.sh &
 #xscreensaver -nosplash &
 # xautolock -time 3 -locker alacritty -e cava && slock &
-xautolock -time 3 -locker lockscreen &
+xautolock -time 5 -locker ~/scripts/lockscreen &
 # xautolock -time 3 -locker slock
 # slstatus &
 caffeine &
