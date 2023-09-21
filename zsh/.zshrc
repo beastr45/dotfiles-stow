@@ -117,6 +117,8 @@ alias l='ls -CF'
 alias :q='exit'
 alias q='exit'
 
+alias c='clear'
+
 #add appimages folder to the $PATH
 export PATH=/home/bear/Applications:$PATH
 #add scripts folder to the $PATH
@@ -151,6 +153,8 @@ function nvims() {
   fi
   NVIM_APPNAME=nvim-configs/$config nvim $@
 }
+
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
