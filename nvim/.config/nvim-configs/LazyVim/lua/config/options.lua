@@ -18,11 +18,6 @@ vim.o.cursorline = true
 -- always show the sign column, otherwise it would shift the text each time
 vim.o.signcolumn = "yes"
 
--- enable treesitter folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.cmd("autocmd BufReadPost,FileReadPost * normal zR")
-
 -- force all vertical splits to go to the right of current window
 vim.o.splitright = true
 
