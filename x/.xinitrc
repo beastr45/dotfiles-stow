@@ -25,6 +25,8 @@ caffeine &
 tilda &
 filen &
 
+nm-tray &
+
 unclutter &
 
 #if u uninstall udiskie remember to fis the unix groups
