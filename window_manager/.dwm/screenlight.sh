@@ -8,18 +8,18 @@
 # $./screenlight.sh down
 
 function get_brightness {
-    xbacklight -get
+    brightnessctl get
 }
 
 
 function send_notification {
-    brightness=`get_brightness`
+    brightness=$((`get_brightness`/240))
     # Send the notification
      dunstify -i /home/bear/Pictures/sysicon/brightness-up.png -t 1000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}%"
 }
 
 function send_notification1 {
-    brightness=`get_brightness`
+    brightness=$((`get_brightness`/240))
     # Send the notification
      dunstify -i /home/bear/Pictures/sysicon/brightness-down.png -t 1000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}%"
 }
@@ -28,11 +28,11 @@ case $1 in
 	# Set the brightness on 
 	
 	# Up the brightness (+ 5%)
-	xbacklight -inc 5
+    brightnessctl set +2%
 	send_notification
 	;;
     down)
-	xbacklight -dec 5
+	brightnessctl set 2%-
 	send_notification1
 	;;
 esac
