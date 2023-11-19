@@ -16,7 +16,9 @@ require("lazy").setup({
     -- https://www.lazyvim.org/extras/lang
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.cmake" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+    { import = "lazyvim.plugins.extras.editor.aerial" },
+    -- { import = "lazyvim.plugins.extras.editor.navic" },
     -- import/override with your plugins
     { import = "plugins" },
   },
