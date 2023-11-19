@@ -14,35 +14,30 @@ setxkbmap -option caps:escape &
 
 picom -b --vsync &
 ~/.conky/conky-startup.sh &
-#xscreensaver -nosplash &
-# xautolock -time 3 -locker alacritty -e cava && slock &
 xautolock -time 5 -locker ~/scripts/lockscreen &
-# xautolock -time 3 -locker slock
 # slstatus &
-caffeine &
 # /home/bear/Applications/filen &
+# filen &
+
 /home/bear/.dwm/lowbatteryremind.sh &
+
+caffeine &
 tilda &
-filen &
-
 nm-tray &
-
+volctl &
 unclutter &
 
-#if u uninstall udiskie remember to fis the unix groups
-#go to like a udiskie tutorial or smth
+#use wmname to fix java applications not rendering properly source is at suckless website not always enabled
+wmname LG3D &
+
+#if u uninstall udiskie remember to fis the unix groups go to like a udiskie tutorial or smth
 udiskie -tn &
 
-#use wmname to fix java applications not rendering properly source is at suckless website
-#not always enabled
-#wmname LG3D
-
 #enable dunst notifs y exposing DISPLAY variable and fixes a lot of other things
-systemctl --user import-environment DISPLAY &
-# dunst &
-
-# xrdb merge ~/.Xresources
-# xbacklight -set 10 &
+systemctl --user import-environment DISPLAY
+& dunst
+& xrdb merge ~/.Xresources 
+#xbacklight -set 10 &
 # # feh --bg-fill ~/Pictures/wall/gruv.png &
 # xset r rate 200 50 &
 
