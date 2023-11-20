@@ -13,7 +13,7 @@ static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL};
 static const char dmenufont[]       = "monospace:size=10";
 static const unsigned int default_gaps = 0;
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int default_border = 0;   /* to switch back to default border after dynamic border resizing via keybinds */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = default_gaps;       /* horiz inner gap between windows */
