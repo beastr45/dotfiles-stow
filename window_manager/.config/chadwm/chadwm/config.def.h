@@ -156,9 +156,9 @@ static const Key keys[] = {
     /* modifier                         key         function        argument */
     // screenshot fullscreen and cropped
     {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
+        SHCMD("maim -u | xclip -selection clipboard -t image/png")},
     {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+        SHCMD("maim -u --select | xclip -selection clipboard -t image/png")},
 
     /* { MODKEY,                           XK_p,       spawn,          SHCMD("rofi -show drun") }, */
     /* { MODKEY|ShiftMask,                 XK_Return,  spawn,            SHCMD("alacritty")}, */
