@@ -34,9 +34,9 @@ wmname LG3D &
 udiskie -tn &
 
 #enable dunst notifs y exposing DISPLAY variable and fixes a lot of other things
-systemctl --user import-environment DISPLAY
-& dunst
-& xrdb merge ~/.Xresources 
+systemctl --user import-environment DISPLAY&
+dunst&
+xrdb merge ~/.Xresources&
 #xbacklight -set 10 &
 # # feh --bg-fill ~/Pictures/wall/gruv.png &
 # xset r rate 200 50 &
