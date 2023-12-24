@@ -127,6 +127,8 @@ export PATH=/home/bear/scripts/statusbar:$PATH
 #add go to the $PATH
 export PATH=/home/bear/go/bin/:$PATH
 
+export PATH="$HOME/opt/cross/bin:$PATH"
+
 # #rainbow custom prompt :)
 # autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
@@ -141,6 +143,7 @@ alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
 alias nvim-none="NVIM_APPNAME=fsdfaad nvim"
 
 alias vi='nvim-lazy'
+alias v='nvim-lazy'
 
 function nvims() {
   items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim" "none")
