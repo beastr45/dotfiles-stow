@@ -19,7 +19,7 @@ function send_notification {
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
     # Send the notification
-     dunstify -i /home/bear/Pictures/sysicon/volume-up.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    #dunstify -i /home/bear/Pictures/sysicon/volume-up.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 
 function send_notification1 {
@@ -28,7 +28,7 @@ function send_notification1 {
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
     # Send the notification
-     dunstify -i /home/bear/Pictures/sysicon/volume-down.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    #dunstify -i /home/bear/Pictures/sysicon/volume-down.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 
 case $1 in
@@ -46,7 +46,7 @@ case $1 in
 	# send_notification1
 	if is_mute ; then
 	    pactl set-sink-volume 0 0%
-            dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
+        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
 	else
 	    pactl set-sink-volume 0 -5%
 	    send_notification1
@@ -56,7 +56,8 @@ case $1 in
     	# Toggle mute
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
-            dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Mute"
+        nop
+        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Mute"
 	else
 	    send_notification
 	fi

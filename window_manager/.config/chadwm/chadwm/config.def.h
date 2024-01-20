@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 #include <X11/XF86keysym.h>
+#include "exitdwm.c"
 
 /* brightness control */
 static const char *upbri[] = {"/home/bear/.dwm/screenlight.sh", "up", NULL};
@@ -82,7 +83,7 @@ static const char* eww[] = { "eww", "open" , "eww", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { eww,         "󰣭" },
+    { eww,         "󰣇" },
 };
 
 static const int tagschemes[] = {
@@ -252,7 +253,9 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
 
     // kill dwm
-    { MODKEY|ControlMask|ShiftMask,     XK_q,       quit,           {0} },
+    //default kill replaced with kill from exit dwm patch
+    /* { MODKEY|ControlMask|ShiftMask,     XK_q,       quit,           {0} }, */
+    { MODKEY|ShiftMask,             XK_q,      exitdwm,       {0} },
     // restart
     /* { MODKEY|ShiftMask,                 XK_r,       restart,           {0} }, */
 
