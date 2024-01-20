@@ -39,7 +39,15 @@ dunst&
 xrdb merge ~/.Xresources&
 #xbacklight -set 10 &
 # # feh --bg-fill ~/Pictures/wall/gruv.png &
-# xset r rate 200 50 &
+
+#change rate of keyboard repitition
+# xset r rate 500 50 &
+
+#disable acidental touchpad typing
+syndaemon -i 3 -t -K -R &
+
+# enable ibus
+ibus-daemon -rxRd
 
 ~/.config/chadwm/scripts/bar.sh &
 # while type dwm >/dev/null; do dwm && continue || break; done

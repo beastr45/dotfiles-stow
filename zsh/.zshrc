@@ -140,7 +140,7 @@ alias nvim-sparkle="NVIM_APPNAME=nvim-configs/NvimSparkle nvim"
 alias nvim-kick="NVIM_APPNAME=nvim-configs/kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
-alias nvim-none="NVIM_APPNAME=fsdfaad nvim"
+alias nvim-none="NVIM_APPNAME=nvim-none nvim"
 
 alias vi='nvim-lazy'
 alias v='nvim-lazy'
