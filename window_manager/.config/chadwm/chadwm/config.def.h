@@ -1,7 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
 #include <X11/XF86keysym.h>
-#include "exitdwm.c"
 
 /* brightness control */
 static const char *upbri[] = {"/home/bear/.dwm/screenlight.sh", "up", NULL};
@@ -11,7 +10,10 @@ static const char *upvol[] = {"/home/bear/.dwm/volume.sh", "up", NULL};
 static const char *downvol[] = {"/home/bear/.dwm/volume.sh", "down", NULL};
 static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL};
 
-static const char dmenufont[]       = "monospace:size=10";
+//swallow patch
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const unsigned int default_gaps = 0;
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -51,6 +53,7 @@ static const int new_window_attach_on_end = 0; /*  1 means the new window will a
 #define ICONSPACING 8 /* space between icon and title */
 
 static const char *fonts[]          = {"Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font Mono:style:medium:size=19" };
+/* static const char *fonts[]          = {"JetBrainsMono Nerd Font Mono:style:medium:size=19" }; */
 
 // theme
 #include "themes/gruvchad.h"
@@ -101,9 +104,16 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     iscentered   isfloating   monitor */
-    { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
-    { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
-    { "eww",      NULL,       NULL,       0,            0,           1,           -1 },
+    /* { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 }, */
+    /* { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 }, */
+    /* { "eww",      NULL,       NULL,       0,            0,           1,           -1 }, */
+
+	/* class                   instance  title           tags mask  is centered isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",                  NULL,     NULL,           0,         0,           1,          0,           0,        -1 },
+	{ "Firefox",               NULL,     NULL,           1 << 8,    0,           0,          0,          -1,        -1 },
+	{ "Alacritty",             NULL,     NULL,           0,         0,           0,          1,           0,        -1 },
+	{ "st-256color",           NULL,     NULL,           0,         0,           0,          1,           0,        -1 },
+	{NULL,                     NULL,     "Event Tester", 0,         0,           0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -150,7 +160,6 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", gray2, "-nf", gray3, "-sb", green, "-sf", gray4, NULL };
-static const char *roficmd[] = { "rofi", "-show",  "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
@@ -164,8 +173,13 @@ static const Key keys[] = {
     /* { MODKEY,                           XK_p,       spawn,          SHCMD("rofi -show drun") }, */
     /* { MODKEY|ShiftMask,                 XK_Return,  spawn,            SHCMD("alacritty")}, */
 
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show run -config ~/.config/chadwm/rofi/config.rasi") },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") },
+	/* { MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show run -config ~/.config/chadwm/rofi/config.rasi") }, */
+	/* { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") }, */
+
+    //https://github.com/adi1090x/rofi
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6-run") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6") },
+
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 
 
@@ -255,7 +269,7 @@ static const Key keys[] = {
     // kill dwm
     //default kill replaced with kill from exit dwm patch
     /* { MODKEY|ControlMask|ShiftMask,     XK_q,       quit,           {0} }, */
-    { MODKEY|ShiftMask,             XK_q,      exitdwm,       {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("~/.config/rofi/scripts/powermenu_t3") },
     // restart
     /* { MODKEY|ShiftMask,                 XK_r,       restart,           {0} }, */
 
