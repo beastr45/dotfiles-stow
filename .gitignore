@@ -2,6 +2,7 @@ tt.*
 .tests
 doc/tags
 lazy-lock.json
+lazyvim.json
 debug
 .repro
 *.o
@@ -12,3 +13,5 @@ luac/
 nvim/.config/nvim-configs/NVsoulfire
 nvim/.config/nvim-configs/NvChad
 nvim/.config/nvim-configs/NvimSparkle
+plugins/
+chadwm
