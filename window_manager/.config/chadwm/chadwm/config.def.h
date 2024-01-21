@@ -177,8 +177,9 @@ static const Key keys[] = {
 	/* { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") }, */
 
     //https://github.com/adi1090x/rofi
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6-run") },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6") },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6 r") },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6 w") },
 
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 

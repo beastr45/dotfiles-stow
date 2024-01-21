@@ -75,6 +75,7 @@ run_cmd() {
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
             else
                 killall bar.sh
+                killall lowbatteryremind.sh
                 dwmc quit
 			fi
 		fi
