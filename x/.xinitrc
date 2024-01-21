@@ -26,6 +26,7 @@ tilda &
 nm-applet &
 volctl &
 unclutter &
+keepassxc &
 
 #use wmname to fix java applications not rendering properly source is at suckless website not always enabled
 wmname LG3D &
