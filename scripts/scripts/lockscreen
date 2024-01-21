@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #kill the speech-dispatcher so it dosent get in the freaking way grr
-killall speech-dispatcher
+# killall speech-dispatcher
 AUDIO_STATE=$(pacmd list-sink-inputs | grep -c 'state: RUNNING')
 echo "$AUDIO_STATE"
 if [ "$AUDIO_STATE" -gt 0 ]; then

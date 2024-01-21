@@ -38,7 +38,7 @@ dist: clean
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f chadwm ${DESTDIR}${PREFIX}/bin
+	cp -f chadwm dwmc ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/chadwm
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/chadwm.1
@@ -46,6 +46,7 @@ install: all
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/chadwm\
+ 		${DESTDIR}${PREFIX}/bin/dwmc\
 		${DESTDIR}${MANPREFIX}/man1/chadwm.1
 
 .PHONY: all options clean dist install uninstall)

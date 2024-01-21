@@ -175,11 +175,6 @@ typedef union {
 } Arg;
 
 typedef struct {
-	const char * sig;
-	void (*func)(const Arg *);
-} Signal;
-
-typedef struct {
   unsigned int click;
   unsigned int mask;
   unsigned int button;
@@ -215,6 +210,13 @@ typedef struct {
   void (*func)(const Arg *);
   const Arg arg;
 } Key;
+
+
+typedef struct {
+	const char * sig;
+	void (*func)(const Arg *);
+} Signal;
+
 
 typedef struct {
   const char *symbol;
@@ -2561,8 +2563,12 @@ void propertynotify(XEvent *e) {
     resizebarwin(selmon);
     updatesystray();
   }
-  if ((ev->window == root) && (ev->atom == XA_WM_NAME))
-    updatestatus();
+  // if ((ev->window == root) && (ev->atom == XA_WM_NAME))
+  //   updatestatus();
+	if ((ev->window == root) && (ev->atom == XA_WM_NAME)) {
+		if (!fake_signal())
+			updatestatus();
+	}
   else if (ev->state == PropertyDelete)
     return; /* ignore */
   else if ((c = wintoclient(ev->window))) {

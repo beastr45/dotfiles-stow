@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-function git_sparse_clone() (
+# function git_sparse_clone() (
   rurl="$1" localdir="$2" && shift 2
 
   mkdir -p "$localdir"
@@ -17,7 +17,7 @@ function git_sparse_clone() (
   done
 
   git pull origin master
-)
+# )
 
 # usage
 # git_sparse_clone "http://github.com/tj/n" "./local/location" "/bin"

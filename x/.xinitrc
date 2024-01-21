@@ -23,7 +23,7 @@ xautolock -time 5 -locker ~/scripts/lockscreen &
 
 caffeine &
 tilda &
-nm-tray &
+nm-applet &
 volctl &
 unclutter &
 
