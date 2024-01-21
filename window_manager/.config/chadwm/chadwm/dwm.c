@@ -276,7 +276,7 @@ static void drawbars(void);
 static int drawstatusbar(Monitor *m, int bh, char *text);
 static void drawtab(Monitor *m);
 static void drawtabs(void);
-//static void enternotify(XEvent *e);
+// static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
 static void focusin(XEvent *e);
@@ -299,6 +299,7 @@ static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
+static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static void moveorplace(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -405,13 +406,13 @@ static void (*handler[LASTEvent])(XEvent *) = {
     [ConfigureRequest] = configurerequest,
     [ConfigureNotify] = configurenotify,
     [DestroyNotify] = destroynotify,
-//    [EnterNotify] = enternotify,
+   // [EnterNotify] = enternotify,
     [Expose] = expose,
     [FocusIn] = focusin,
     [KeyPress] = keypress,
     [MappingNotify] = mappingnotify,
     [MapRequest] = maprequest,
-//    [MotionNotify] = motionnotify,
+   [MotionNotify] = motionnotify,
     [PropertyNotify] = propertynotify,
     [ResizeRequest] = resizerequest,
     [UnmapNotify] = unmapnotify};
@@ -802,6 +803,8 @@ void clientmessage(XEvent *e) {
   XClientMessageEvent *cme = &e->xclient;
   Client *c = wintoclient(cme->window);
 
+	unsigned int i;
+
   if (showsystray && cme->window == systray->win &&
       cme->message_type == netatom[NetSystemTrayOP]) {
     /* add systray icons */
@@ -870,6 +873,14 @@ void clientmessage(XEvent *e) {
   } else if (cme->message_type == netatom[NetActiveWindow]) {
     if (c != selmon->sel && !c->isurgent)
       seturgent(c, 1);
+  	for (i = 0; i < LENGTH(tags) && !((1 << i) & c->tags); i++);
+  	if (i < LENGTH(tags)) {
+  		const Arg a = {.ui = 1 << i};
+  		selmon = c->mon;
+  		view(&a);
+  		focus(c);
+  		restack(selmon);
+  	}
   }
 }
 
@@ -1837,7 +1848,7 @@ drawtab(Monitor *m) {
 	drw_map(drw, m->tabwin, 0, 0, m->ww, th);
 }
 
-//void enternotify(XEvent *e) {
+// void enternotify(XEvent *e) {
 //  Client *c;
 //  Monitor *m;
 //  XCrossingEvent *ev = &e->xcrossing;
@@ -1853,7 +1864,7 @@ drawtab(Monitor *m) {
 //  } else if (!c || c == selmon->sel)
 //    return;
 //  focus(c);
-//}
+// }
 
 void expose(XEvent *e) {
   Monitor *m;
@@ -1948,6 +1959,7 @@ focuswin(const Arg* arg){
 		focus(c);
 		restack(selmon);
 	}
+	updatecurrentdesktop();
 }
 
 Atom getatomprop(Client *c, Atom prop) {
@@ -2070,6 +2082,7 @@ freeicon(Client *c)
 		XRenderFreePicture(dpy, c->icon);
 		c->icon = None;
 	}
+	updatecurrentdesktop();
 }
 
 void
@@ -2292,43 +2305,43 @@ monocle(Monitor *m)
   }
 }
 
-//void motionnotify(XEvent *e) {
-//  unsigned int i, x;
-//  static Monitor *mon = NULL;
-//  Monitor *m;
-//  XMotionEvent *ev = &e->xmotion;
-//
-//  if (ev->window == selmon->barwin) {
-//		i = x = 0;
-//		do
-//			x += TEXTW(tags[i]);
-//		while (ev->x >= x && ++i < LENGTH(tags));
-//		if (i < LENGTH(tags)) {
-//                  if ((i + 1) != selmon->previewshow && !(selmon->tagset[selmon->seltags] & 1 << i)) {
-//				selmon->previewshow = i + 1;
-//				showtagpreview(i);
-//                  } else if (selmon->tagset[selmon->seltags] & 1 << i) {
-//				selmon->previewshow = 0;
-//				showtagpreview(0);
-//		  }
-//		} else if (selmon->previewshow != 0) {
-//			selmon->previewshow = 0;
-//			showtagpreview(0);
-//		}
-//	} else if (selmon->previewshow != 0) {
-//		selmon->previewshow = 0;
-//		showtagpreview(0);
-//   }
-//
-//  if (ev->window != root)
-//    return;
-//  if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
-//    unfocus(selmon->sel, 1);
-//    selmon = m;
-//    focus(NULL);
-//  }
-//  mon = m;
-//}
+void motionnotify(XEvent *e) {
+ unsigned int i, x;
+ static Monitor *mon = NULL;
+ Monitor *m;
+ XMotionEvent *ev = &e->xmotion;
+
+ if (ev->window == selmon->barwin) {
+		i = x = 0;
+		do
+			x += TEXTW(tags[i]);
+		while (ev->x >= x && ++i < LENGTH(tags));
+		if (i < LENGTH(tags)) {
+                 if ((i + 1) != selmon->previewshow && !(selmon->tagset[selmon->seltags] & 1 << i)) {
+				selmon->previewshow = i + 1;
+				showtagpreview(i);
+                 } else if (selmon->tagset[selmon->seltags] & 1 << i) {
+				selmon->previewshow = 0;
+				showtagpreview(0);
+		  }
+		} else if (selmon->previewshow != 0) {
+			selmon->previewshow = 0;
+			showtagpreview(0);
+		}
+	} else if (selmon->previewshow != 0) {
+		selmon->previewshow = 0;
+		showtagpreview(0);
+  }
+
+ // if (ev->window != root)
+ //   return;
+ // if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
+ //   unfocus(selmon->sel, 1);
+ //   selmon = m;
+ //   focus(NULL);
+ // }
+ // mon = m;
+}
 
 void
 updateicon(Client *c)
@@ -3373,6 +3386,7 @@ tabmode(const Arg *arg)
 	else
 		selmon->showtab = (selmon->showtab + 1 ) % showtab_nmodes;
 	arrange(selmon);
+	updatecurrentdesktop();
 }
 
 void tag(const Arg *arg) {
