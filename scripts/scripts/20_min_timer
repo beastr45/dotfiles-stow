@@ -1,8 +1,8 @@
 #/usr/bin/bash
-/home/bear/go/bin/countdown 25m && 
+termdown 20m ;
 while :
 do
 	echo "Press [CTRL+C] to stop.."
 	paplay /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga
-	sleep 1
+	sleep 3
 done

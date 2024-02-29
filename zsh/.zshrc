@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -140,10 +140,13 @@ alias nvim-sparkle="NVIM_APPNAME=nvim-configs/NvimSparkle nvim"
 alias nvim-kick="NVIM_APPNAME=nvim-configs/kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
+alias nvim-vimacs="NVIM_APPNAME=nvim-configs/Vimacs nvim"
 alias nvim-none="NVIM_APPNAME=nvim-none nvim"
 
 alias vi='nvim-lazy'
 alias v='nvim-lazy'
+
+alias server='python -m http.server'
 
 function nvims() {
   items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim" "none")
@@ -159,5 +162,7 @@ function nvims() {
 
 eval "$(zoxide init zsh)"
 
+eval "$(starship init zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
