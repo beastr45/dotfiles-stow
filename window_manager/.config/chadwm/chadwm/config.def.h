@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/X.h>
 #include <X11/XF86keysym.h>
 
 /* brightness control */
@@ -13,6 +14,13 @@ static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL};
 //swallow patch
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 
+//riopdraw consts
+static const char slopspawnstyle[]  = "-D -l -c 0.3,0.4,0.6,0.4"; /* do NOT define -f (format) here */
+static const char slopresizestyle[] = "-D -l -c 0.3,0.4,0.6,0.4"; /* do NOT define -f (format) here */
+static const int riodraw_borders    = 0;        /* 0 or 1, indicates whether the area drawn using slop includes the window borders */
+static const int riodraw_matchpid   = 1;        /* 0 or 1, indicates whether to match the PID of the client that was spawned with riospawn */
+static const int riodraw_spawnasync = 0;        /* 0 means that the application is only spawned after a successful selection while
+                                                 * 1 means that the application is being initialised in the background while the selection is made */
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const unsigned int default_gaps = 0;
 /* appearance */
@@ -80,7 +88,8 @@ static const char *colors[][3]      = {
 /* tagging */
 /* static char *tags[] = {"", "", "", "", ""}; */
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "", "" };
+/* static char *tags[] = { "1", "2", "3", "4", "5" }; */
 
 static const char* eww[] = { "eww", "open" , "eww", NULL };
 
@@ -90,7 +99,7 @@ static const Launcher launchers[] = {
 };
 
 static const int tagschemes[] = {
-    SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5
+    SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5, SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4,
 };
 
 static const unsigned int ulinepad      = 5; /* horizontal padding between the underline and tag */
@@ -112,7 +121,9 @@ static const Rule rules[] = {
 	{ "Gimp",                  NULL,     NULL,           0,         0,           1,          0,           0,        -1 },
 	{ "Firefox",               NULL,     NULL,           1 << 8,    0,           0,          0,          -1,        -1 },
 	{ "Alacritty",             NULL,     NULL,           0,         0,           0,          1,           0,        -1 },
+	{ "kitty",                 NULL,     NULL,           0,         0,           0,          1,           0,        -1 },
 	{ "st-256color",           NULL,     NULL,           0,         0,           0,          1,           0,        -1 },
+	{ "Evince",                NULL,     NULL,           0,         0,           0,          0,           1,        -1 },
 	{NULL,                     NULL,     "Event Tester", 0,         0,           0,          0,           1,        -1 }, /* xev */
 };
 
@@ -120,7 +131,7 @@ static const Rule rules[] = {
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "functions.h"
@@ -142,6 +153,7 @@ static const Layout layouts[] = {
     { "|M|",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
     { "><>",      NULL },    /* no layout function means floating behavior */
+	{ "|+|",      tatami },
     { NULL,       NULL },
 };
 
@@ -160,29 +172,24 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", gray2, "-nf", gray3, "-sb", green, "-sf", gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 
 static const Key keys[] = {
     /* modifier                         key         function        argument */
     // screenshot fullscreen and cropped
-    {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim -u | xclip -selection clipboard -t image/png")},
-    {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim -u --select | xclip -selection clipboard -t image/png")},
+    /* {MODKEY|ControlMask,                XK_u,       spawn,        SHCMD("maim -u -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png")}, */
+    /* {MODKEY,                            XK_u,       spawn,        SHCMD("maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png")}, */
 
-    /* { MODKEY,                           XK_p,       spawn,          SHCMD("rofi -show drun") }, */
     /* { MODKEY|ShiftMask,                 XK_Return,  spawn,            SHCMD("alacritty")}, */
-
 	/* { MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show run -config ~/.config/chadwm/rofi/config.rasi") }, */
 	/* { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") }, */
-
     //https://github.com/adi1090x/rofi
 	{ MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6") },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6 r") },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("~/.config/rofi/scripts/launcher_t6 w") },
-
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 
+	{ MODKEY|ControlMask,           XK_Return, riospawn,       {.v = termcmd } },
+	{ MODKEY,                       XK_r,      rioresize,      {0} },
 
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
@@ -203,10 +210,10 @@ static const Key keys[] = {
     // change m,cfact sizes 
     { MODKEY,                           XK_h,       setmfact,       {.f = -0.05} },
     { MODKEY,                           XK_l,       setmfact,       {.f = +0.05} },
+    { MODKEY,                           XK_o,       setmfact,       {.f =  0.00} },
     { MODKEY|ShiftMask,                 XK_h,       setcfact,       {.f = +0.25} },
     { MODKEY|ShiftMask,                 XK_l,       setcfact,       {.f = -0.25} },
     { MODKEY|ShiftMask,                 XK_o,       setcfact,       {.f =  0.00} },
-
 
     { MODKEY|ShiftMask,                 XK_j,       movestack,      {.i = +1 } },
     { MODKEY|ShiftMask,                 XK_k,       movestack,      {.i = -1 } },
@@ -219,31 +226,14 @@ static const Key keys[] = {
 
 	{ MODKEY,                       XK_minus,  incrgaps,        {.i = -5 } },
 	{ MODKEY,                       XK_equal,  incrgaps,        {.i = +5 } },
+	{ MODKEY|ControlMask,           XK_o,      setgaps,         {.i = 0 } },
 	/* { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } }, */
 	/* { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} }, */
 
-
-    //commented out resize functions to avoid confusion
-
-    /* // inner gaps */
-    /* { MODKEY|ShiftMask,                 XK_i,       incrigaps,      {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_i,       incrigaps,      {.i = -1 } }, */
-    /**/
-    /* // outer gaps */
-    /* { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } }, */
-
-    /* // inner+outer hori, vert gaps  */
-    /* { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } }, */
-    /* { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_7,       incrivgaps,     {.i = -1 } }, */
-    /* { MODKEY|ControlMask,               XK_8,       incrohgaps,     {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_8,       incrohgaps,     {.i = -1 } }, */
-    /* { MODKEY|ControlMask,               XK_9,       incrovgaps,     {.i = +1 } }, */
-    /* { MODKEY|ControlMask|ShiftMask,     XK_9,       incrovgaps,     {.i = -1 } }, */
-    /**/
-    /* { MODKEY|ControlMask|ShiftMask,     XK_d,       defaultgaps,    {0} }, */
+    // change border size
+    { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },
+    { MODKEY|ShiftMask,                 XK_equal,   setborderpx,    {.i = +1 } },
+    { MODKEY|ControlMask|ShiftMask,     XK_o,       setborderpx,    {.i = default_border } },
 
     // layout
     { MODKEY,                           XK_t,       setlayout,      {.v = &layouts[0]} },
@@ -251,6 +241,7 @@ static const Key keys[] = {
     { MODKEY,                           XK_m,       setlayout,      {.v = &layouts[1]} },
     { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} },
     { MODKEY|ControlMask|ShiftMask,     XK_t,       setlayout,      {.v = &layouts[13]} },
+    { MODKEY|ControlMask|ShiftMask,     XK_y,       setlayout,      {.v = &layouts[14]} },
     { MODKEY,                           XK_space,   setlayout,      {0} },
     { MODKEY|ControlMask,               XK_comma,   cyclelayout,    {.i = -1 } },
     { MODKEY|ControlMask,               XK_period,  cyclelayout,    {.i = +1 } },
@@ -262,21 +253,13 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,                 XK_comma,   tagmon,         {.i = -1 } },
     { MODKEY|ShiftMask,                 XK_period,  tagmon,         {.i = +1 } },
 
-    // change border size
-    { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_equal,   setborderpx,    {.i = +1 } },
-    { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
-
     // kill dwm
     //default kill replaced with kill from exit dwm patch
     /* { MODKEY|ControlMask|ShiftMask,     XK_q,       quit,           {0} }, */
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("~/.config/rofi/scripts/powermenu_t3") },
-    // restart
-    /* { MODKEY|ShiftMask,                 XK_r,       restart,           {0} }, */
 
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
-
 
     // hide & restore windows
     { MODKEY,                           XK_e,       hidewin,        {0} },
@@ -289,8 +272,8 @@ static const Key keys[] = {
     TAGKEYS(                            XK_5,                       4)
     TAGKEYS(                            XK_6,                       5)
     TAGKEYS(                            XK_7,                       6)
-    TAGKEYS(                            XK_8,                       7)
-    TAGKEYS(                            XK_9,                       8)
+    TAGKEYS(                            XK_:,                       7)
+    TAGKEYS(                            XK_;,                       8)
 
 
     /* audio keys */
@@ -342,6 +325,26 @@ static const Button buttons[] = {
     { ClkTabNext,           0,              Button1,        movestack,      { .i = +1 } },
     { ClkTabClose,          0,              Button1,        killclient,     {0} },
 };
+
+    //commented out resize functions to avoid confusion
+    /* // inner gaps */
+    /* { MODKEY|ShiftMask,                 XK_i,       incrigaps,      {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_i,       incrigaps,      {.i = -1 } }, */
+    /**/
+    /* // outer gaps */
+    /* { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } }, */
+    /* // inner+outer hori, vert gaps  */
+    /* { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_7,       incrivgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_8,       incrohgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_8,       incrohgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,               XK_9,       incrovgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask|ShiftMask,     XK_9,       incrovgaps,     {.i = -1 } }, */
+    /**/
+    /* { MODKEY|ControlMask|ShiftMask,     XK_d,       defaultgaps,    {0} }, */
 
 
 /* dwmc patch */
