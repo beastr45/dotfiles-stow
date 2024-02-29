@@ -80,7 +80,7 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("n", "<leader>bw", ":bw <cr>", { desc = "close buffer" })
 
 -- set zenmode keymap
-vim.keymap.set("n", "<leader>z", ":ZenMode <CR>", opts)
+vim.keymap.set("n", "<leader>uz", ":ZenMode <CR>", opts)
 
 -- Move to window using the <ctrl> hjkl keys but with tmux extenstion
 vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Go to left window", remap = true })
@@ -88,5 +88,20 @@ vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Go to lower
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Go to right window", remap = true })
 
+
+vim.keymap.set("n", "q:", "<nop>", opts)
+
 --set navbuddy keymap
 vim.keymap.set("n", "<leader>cb", ":Navbuddy<CR>", opts)
+vim.keymap.set("n", "<leader>cc", function()
+  require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()] = nil
+end, { desc = "clear luasnip jumplist" })
+--
+--toggle autosaving
+vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
+--
+-- vim.api.nvim_set_keymap("n", "<leader>zn", ":TZNarrow<CR>", {})
+-- vim.api.nvim_set_keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", {})
+-- vim.api.nvim_set_keymap("n", "<leader>zf", ":TZFocus<CR>", {})
+-- vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
+-- vim.api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})

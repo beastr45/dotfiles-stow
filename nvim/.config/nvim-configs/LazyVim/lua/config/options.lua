@@ -1,7 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-vim.opt.winbar = "%=%m %f"
+-- vim.opt.winbar = "%=%m %f"
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -23,9 +23,6 @@ vim.o.splitright = true
 
 -- space in the neovim command line for displaying messages
 vim.opt.cmdheight = 0
-
---toggle autosaving
-vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
 
 -- add title to windows displaying what directory we are in
 vim.opt.winbar = "%=%m %f"
@@ -63,3 +60,7 @@ vim.o.termguicolors = true
 vim.opt.wrap = true
 
 vim.opt.relativenumber = false
+
+-- vim.opt.cursorcolumn = true
+
+vim.g.autoformat = false
