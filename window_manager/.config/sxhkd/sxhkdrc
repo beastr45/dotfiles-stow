@@ -1,0 +1,16 @@
+super + w
+    ~/.config/rofi/scripts/launcher_t6 w
+super + u
+    maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
+super + shift + u
+    maim -u -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
+super + y
+    setxkbmap -option caps:escape
+    setxkbmap -option compose:ralt
+
+super + g; {c,t}
+    {firefox --new-tab https://classroom.google.com/u/1/}
+    {firefox --new-tab}
+
+super + s
+    ~/scripts/clip2png
