@@ -136,5 +136,16 @@ return {
   --     })
   --   end,
   -- },
-  { "xuhdev/vim-latex-live-preview" },
+  {
+    "lervag/vimtex",
+    config = function()
+      -- vim.g.vimtex_view_method = "evince"
+      vim.g.vimtex_view_general_viewer = "evince"
+      vim.g.vimtex_view_general_options = "--unique file:@pdf#src:@line@tex"
+      vim.g.vimtex_compiler_method = "latexmk"
+
+      vim.api.nvim_set_keymap("n", "<leader>cx", ":VimtexCompileSS<CR>", {})
+    end,
+    ft = "tex",
+  },
 }

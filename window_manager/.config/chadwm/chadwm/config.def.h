@@ -172,7 +172,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", gray2, "-nf", gray3, "-sb", green, "-sf", gray4, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
     /* modifier                         key         function        argument */
@@ -206,6 +206,8 @@ static const Key keys[] = {
     // shift view
     { MODKEY,                           XK_Left,    shiftview,      {.i = -1 } },
     { MODKEY,                           XK_Right,   shiftview,      {.i = +1 } },
+    { MODKEY|ControlMask,                           XK_j,    shiftview,      {.i = -1 } },
+    { MODKEY|ControlMask,                           XK_k,   shiftview,      {.i = +1 } },
 
     // change m,cfact sizes 
     { MODKEY,                           XK_h,       setmfact,       {.f = -0.05} },
@@ -239,7 +241,8 @@ static const Key keys[] = {
     { MODKEY,                           XK_t,       setlayout,      {.v = &layouts[0]} },
     { MODKEY|ShiftMask,                 XK_f,       setlayout,      {.v = &layouts[2]} },
     { MODKEY,                           XK_m,       setlayout,      {.v = &layouts[1]} },
-    { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} },
+    { MODKEY,                           XK_d,       setlayout,      {.v = &layouts[4]} },
+    /* { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} }, */
     { MODKEY|ControlMask|ShiftMask,     XK_t,       setlayout,      {.v = &layouts[13]} },
     { MODKEY|ControlMask|ShiftMask,     XK_y,       setlayout,      {.v = &layouts[14]} },
     { MODKEY,                           XK_space,   setlayout,      {0} },

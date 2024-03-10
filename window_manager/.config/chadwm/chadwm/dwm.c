@@ -299,7 +299,7 @@ static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
-static void motionnotify(XEvent *e);
+// static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static void moveorplace(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -420,7 +420,7 @@ static void (*handler[LASTEvent])(XEvent *) = {
     [KeyPress] = keypress,
     [MappingNotify] = mappingnotify,
     [MapRequest] = maprequest,
-   [MotionNotify] = motionnotify,
+   // [MotionNotify] = motionnotify,
     [PropertyNotify] = propertynotify,
     [ResizeRequest] = resizerequest,
     [UnmapNotify] = unmapnotify};
@@ -2425,43 +2425,43 @@ monocle(Monitor *m)
   }
 }
 
-void motionnotify(XEvent *e) {
- unsigned int i, x;
- static Monitor *mon = NULL;
- Monitor *m;
- XMotionEvent *ev = &e->xmotion;
-
- if (ev->window == selmon->barwin) {
-		i = x = 0;
-		do
-			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
-		if (i < LENGTH(tags)) {
-                 if ((i + 1) != selmon->previewshow && !(selmon->tagset[selmon->seltags] & 1 << i)) {
-				selmon->previewshow = i + 1;
-				showtagpreview(i);
-                 } else if (selmon->tagset[selmon->seltags] & 1 << i) {
-				selmon->previewshow = 0;
-				showtagpreview(0);
-		  }
-		} else if (selmon->previewshow != 0) {
-			selmon->previewshow = 0;
-			showtagpreview(0);
-		}
-	} else if (selmon->previewshow != 0) {
-		selmon->previewshow = 0;
-		showtagpreview(0);
-  }
-
- // if (ev->window != root)
- //   return;
- // if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
- //   unfocus(selmon->sel, 1);
- //   selmon = m;
- //   focus(NULL);
- // }
- // mon = m;
-}
+// void motionnotify(XEvent *e) {
+//  unsigned int i, x;
+//  static Monitor *mon = NULL;
+//  Monitor *m;
+//  XMotionEvent *ev = &e->xmotion;
+//
+//  if (ev->window == selmon->barwin) {
+// 		i = x = 0;
+// 		do
+// 			x += TEXTW(tags[i]);
+// 		while (ev->x >= x && ++i < LENGTH(tags));
+// 		if (i < LENGTH(tags)) {
+//                  if ((i + 1) != selmon->previewshow && !(selmon->tagset[selmon->seltags] & 1 << i)) {
+// 				selmon->previewshow = i + 1;
+// 				showtagpreview(i);
+//                  } else if (selmon->tagset[selmon->seltags] & 1 << i) {
+// 				selmon->previewshow = 0;
+// 				showtagpreview(0);
+// 		  }
+// 		} else if (selmon->previewshow != 0) {
+// 			selmon->previewshow = 0;
+// 			showtagpreview(0);
+// 		}
+// 	} else if (selmon->previewshow != 0) {
+// 		selmon->previewshow = 0;
+// 		showtagpreview(0);
+//   }
+//
+//  if (ev->window != root)
+//    return;
+//  if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
+//    unfocus(selmon->sel, 1);
+//    selmon = m;
+//    focus(NULL);
+//  }
+//  mon = m;
+// }
 
 void
 updateicon(Client *c)
