@@ -1,2 +1,13 @@
 #!/usr/bin/bash
-xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/$(date +%Y-%m-%d_%T).png"  # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.
+
+echo "enter name leave blank for timestamp"
+read name
+
+if test -z "$name"; then
+    echo "name is empty"
+    name="$(date +%Y-%m-%d_%T)"
+fi
+echo $name
+
+
+xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/screenshots/$name.png" # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.

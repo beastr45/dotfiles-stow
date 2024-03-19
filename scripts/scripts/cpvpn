@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+cat /home/bear/Documents/vpn_password | xclip -sel c

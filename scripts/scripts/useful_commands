@@ -1,0 +1,8 @@
+# add useful commands and one-liners to remember later
+#DO NOT RUN IN BASH
+
+#simple:
+#remove things
+rm -rf
+#better cd
+z {dir}
