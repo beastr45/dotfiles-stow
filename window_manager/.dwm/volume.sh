@@ -37,8 +37,14 @@ case $1 in
 	amixer -D pulse set Master on > /dev/null
 	# Up the volume (+ 5%)
 	# amixer -D pulse sset Master 5%+ > /dev/null
-	pactl set-sink-volume 0 +5%
-	send_notification
+	if is_mute ; then
+	    pactl set-sink-volume 0 +5%
+	    pactl set-sink-mute 0 toggle
+        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
+	else
+	    pactl set-sink-volume 0 +5%
+	    send_notification
+	fi
 	;;
     down)
 	# amixer -D pulse set Master on > /dev/null
@@ -54,7 +60,8 @@ case $1 in
 	;;
     mute)
     	# Toggle mute
-	amixer -D pulse set Master 1+ toggle > /dev/null
+	# amixer -D pulse set Master 1+ toggle > /dev/null
+	pactl set-sink-mute 0 toggle
 	if is_mute ; then
         nop
         #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Mute"
