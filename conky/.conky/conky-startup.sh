@@ -8,5 +8,7 @@ if [ "$DESKTOP_SESSION" = "" ]; then
    conky -c "$HOME/.conky/Sirius/Sirius2.conf" &
    cd "$HOME/.conky/battery"
    conky -c "$HOME/.conky/battery/battery.conf" &
+   cd "$HOME/.conky/quote"
+   conky -c "$HOME/.conky/quote/quote.conf" &
    exit 0
 fi
