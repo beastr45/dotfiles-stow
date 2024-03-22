@@ -8,8 +8,8 @@
 sxhkd &
 
 # Map capslock key to escape
-sleep 1;setxkbmap -option caps:escape &
-sleep 1;setxkbmap -option compose:ralt &
+# sleep 1;setxkbmap -option caps:escape &
+# sleep 1;setxkbmap -option compose:ralt &
 #to change .fehbg just run feh --bg-fill -> whatever
 ~/.fehbg &
 #ulauncher &
