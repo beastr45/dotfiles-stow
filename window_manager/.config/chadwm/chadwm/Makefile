@@ -27,6 +27,8 @@ chadwm: ${OBJ}
 
 clean:
 	rm -f chadwm ${OBJ} dwm-${VERSION}.tar.gz config.h
+cf:
+	rm -rf config.h
 
 dist: clean
 	mkdir -p dwm-${VERSION}
