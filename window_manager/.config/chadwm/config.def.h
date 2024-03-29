@@ -4,12 +4,12 @@
 #include <X11/XF86keysym.h>
 
 /* brightness control */
-static const char *upbri[] = {"/home/bear/.dwm/screenlight.sh", "up", NULL};
-static const char *downbri[] = {"/home/bear/.dwm/screenlight.sh", "down", NULL};
+/* static const char *upbri[] = {"/home/bear/.dwm/screenlight.sh", "up", NULL}; */
+/* static const char *downbri[] = {"/home/bear/.dwm/screenlight.sh", "down", NULL}; */
 /*volume control */
-static const char *upvol[] = {"/home/bear/.dwm/volume.sh", "up", NULL};
-static const char *downvol[] = {"/home/bear/.dwm/volume.sh", "down", NULL};
-static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL};
+/* static const char *upvol[] = {"/home/bear/.dwm/volume.sh", "up", NULL}; */
+/* static const char *downvol[] = {"/home/bear/.dwm/volume.sh", "down", NULL}; */
+/* static const char *mutevol[] = {"/home/bear/.dwm/volume.sh", "mute", NULL}; */
 
 //swallow patch
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -280,12 +280,12 @@ static const Key keys[] = {
 
 
     /* audio keys */
-    { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-    { 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
-    { 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+    /* { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } }, */
+    /* { 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } }, */
+    /* { 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } }, */
     /*brightness control keys */
-    { 0, XF86XK_MonBrightnessUp, spawn, {.v = upbri}},
-    { 0, XF86XK_MonBrightnessDown, spawn, {.v = downbri}},
+    /* { 0, XF86XK_MonBrightnessUp, spawn, {.v = upbri}}, */
+    /* { 0, XF86XK_MonBrightnessDown, spawn, {.v = downbri}}, */
 
     //focusmaster
     { MODKEY|ControlMask,           XK_space,  focusmaster,    {0} },

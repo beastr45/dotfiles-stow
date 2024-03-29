@@ -4,9 +4,9 @@ super + u
     maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
 super + shift + u
     maim -u -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
-super + y
-    setxkbmap -option caps:escape
-    setxkbmap -option compose:ralt
+#super + y
+#    setxkbmap -option caps:escape
+#    setxkbmap -option compose:ralt
 
 super + g; {c,t}
     {firefox --new-tab https://classroom.google.com/u/1/}
@@ -14,3 +14,16 @@ super + g; {c,t}
 
 super + s
     ~/scripts/clip2png
+
+XF86MonBrightnessUp
+    ~/scripts/screenlight.sh up
+XF86MonBrightnessDown
+    ~/scripts/screenlight.sh down
+XF86AudioRaiseVolume
+    ~/scripts/volume.sh up
+XF86AudioLowerVolume
+    ~/scripts/volume.sh down
+XF86AudioMute
+    ~/scripts/volume.sh mute
+
+#super + v; {p}

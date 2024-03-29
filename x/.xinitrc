@@ -21,7 +21,7 @@ xautolock -time 5 -locker ~/scripts/lockscreen &
 # /home/bear/Applications/filen &
 # filen &
 
-/home/bear/.dwm/lowbatteryremind.sh &
+/home/bear/scripts/lowbatteryremind.sh &
 
 caffeine &
 # tilda &
