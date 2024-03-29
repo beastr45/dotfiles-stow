@@ -9,8 +9,8 @@
 city_id=5037649
 
 # you can use this or replace with yours
-#api_key=b59117c083dfa1d4e6cc3186a568fd26
-api_key=359bdeb0a08a0912aee2a30ba74dfa73
+source weather.env
+echo $api_key
 
 # choose between metric for Celcius or imperial for fahrenheit
 unit=imperial
