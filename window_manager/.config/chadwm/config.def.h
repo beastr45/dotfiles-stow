@@ -13,14 +13,12 @@
 
 //swallow patch
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-
 //riopdraw consts
 static const char slopspawnstyle[]  = "-D -l -c 0.3,0.4,0.6,0.4"; /* do NOT define -f (format) here */
 static const char slopresizestyle[] = "-D -l -c 0.3,0.4,0.6,0.4"; /* do NOT define -f (format) here */
 static const int riodraw_borders    = 0;        /* 0 or 1, indicates whether the area drawn using slop includes the window borders */
 static const int riodraw_matchpid   = 1;        /* 0 or 1, indicates whether to match the PID of the client that was spawned with riospawn */
-static const int riodraw_spawnasync = 0;        /* 0 means that the application is only spawned after a successful selection while
-                                                 * 1 means that the application is being initialised in the background while the selection is made */
+static const int riodraw_spawnasync = 0;        /* 0 means that the application is only spawned after a successful selection while*/
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const unsigned int default_gaps = 0;
 /* appearance */
@@ -38,12 +36,10 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display s
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int showtab            = showtab_auto;
-static const int toptab             = 1;        /* 0 means bottom tab */
+static const int toptab             = 0;        /* 0 means bottom tab */
 static const int floatbar           = 0;/* 1 means the bar will float(don't have padding),0 means the bar have padding */
 static const int topbar             = 1;        /* 0 means bottom bar */
-
 static const int focusonwheel       = 0;
-
 /* static const int horizpadbar        = 5; */
 /* static const int vertpadbar         = 11; */
 static const int horizpadbar        = 0;
@@ -54,8 +50,6 @@ static const int horizpadtabo       = 15;
 static const int scalepreview       = 4;
 static const int tag_preview        = 1;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
-/* static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL}; */
-/* static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL}; */
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
@@ -86,10 +80,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-/* static char *tags[] = {"", "", "", "", ""}; */
-/* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "", "" };
-/* static char *tags[] = { "1", "2", "3", "4", "5" }; */
 
 static const char* eww[] = { "eww", "open" , "eww", NULL };
 
@@ -136,7 +127,6 @@ static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen win
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "functions.h"
 
-
 static const Layout layouts[] = {
     /* symbol     arrange function */
     { "[]=",      tile },    /* first entry is default */
@@ -179,7 +169,6 @@ static const Key keys[] = {
     // screenshot fullscreen and cropped
     /* {MODKEY|ControlMask,                XK_u,       spawn,        SHCMD("maim -u -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png")}, */
     /* {MODKEY,                            XK_u,       spawn,        SHCMD("maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png")}, */
-
     /* { MODKEY|ShiftMask,                 XK_Return,  spawn,            SHCMD("alacritty")}, */
 	/* { MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show run -config ~/.config/chadwm/rofi/config.rasi") }, */
 	/* { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi -show drun -config ~/.config/chadwm/rofi/config.rasi") }, */
@@ -196,7 +185,6 @@ static const Key keys[] = {
     { MODKEY|ControlMask,               XK_t,       togglegaps,     {0} },
     { MODKEY|ShiftMask,                 XK_space,   togglefloating, {0} },
     { MODKEY,                           XK_f,       togglefullscr,  {0} },
-
     { MODKEY|ControlMask,               XK_w,       tabmode,        { -1 } },
     { MODKEY,                           XK_j,       focusstack,     {.i = +1 } },
     { MODKEY,                           XK_k,       focusstack,     {.i = -1 } },
@@ -216,7 +204,6 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,                 XK_h,       setcfact,       {.f = +0.25} },
     { MODKEY|ShiftMask,                 XK_l,       setcfact,       {.f = -0.25} },
     { MODKEY|ShiftMask,                 XK_o,       setcfact,       {.f =  0.00} },
-
     { MODKEY|ShiftMask,                 XK_j,       movestack,      {.i = +1 } },
     { MODKEY|ShiftMask,                 XK_k,       movestack,      {.i = -1 } },
     { MODKEY,                           XK_Return,  zoom,           {0} },
@@ -225,12 +212,11 @@ static const Key keys[] = {
     // overall gaps
     /* { MODKEY|ControlMask,               XK_i,       incrgaps,       {.i = +1 } }, */
     /* { MODKEY|ControlMask,               XK_d,       incrgaps,       {.i = -1 } }, */
-
+	/* { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } }, */
+	/* { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} }, */
 	{ MODKEY,                       XK_minus,  incrgaps,        {.i = -5 } },
 	{ MODKEY,                       XK_equal,  incrgaps,        {.i = +5 } },
 	{ MODKEY|ControlMask,           XK_o,      setgaps,         {.i = 0 } },
-	/* { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } }, */
-	/* { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} }, */
 
     // change border size
     { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },

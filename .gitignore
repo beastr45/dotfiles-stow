@@ -13,6 +13,6 @@ foo.*
 *.log
 data
 luac/
-nvim/.config/nvim-configs/NVsoulfire
-nvim/.config/nvim-configs/NvChad
-nvim/.config/nvim-configs/NvimSparkle
+# nvim/.config/nvim-configs/NVsoulfire
+# nvim/.config/nvim-configs/NvChad
+# nvim/.config/nvim-configs/NvimSparkle
