@@ -1,3 +1,6 @@
 [submodule "nvim/.config/nvim-configs/NvChad"]
 	path = nvim/.config/nvim-configs/NvChad
 	url = https://github.com/NvChad/starter
+[submodule "nvim/.config/nvim-configs/LazyVim"]
+	path = nvim/.config/nvim-configs/LazyVim
+	url = https://github.com/beastr45/SleepyNvim.git
