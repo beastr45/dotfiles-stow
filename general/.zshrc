@@ -135,13 +135,10 @@ export PATH="$HOME/opt/cross/bin:$PATH"
 
 #neovim switcher script
 alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
-alias nvim-fire="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
-alias nvim-sparkle="NVIM_APPNAME=nvim-configs/NvimSparkle nvim"
-alias nvim-kick="NVIM_APPNAME=nvim-configs/kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
 alias nvim-vimacs="NVIM_APPNAME=nvim-configs/Vimacs nvim"
-alias nvim-none="NVIM_APPNAME=nvim-none nvim"
+alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
 alias vi='nvim-lazy'
 alias v='nvim-lazy'
@@ -149,7 +146,7 @@ alias v='nvim-lazy'
 alias server='python -m http.server'
 
 function nvims() {
-  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim" "none")
+  items=("default" "LazyVim" "NvChad" "AstroNvim" "none")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
