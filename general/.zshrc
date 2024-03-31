@@ -140,8 +140,8 @@ alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
 alias nvim-vimacs="NVIM_APPNAME=nvim-configs/Vimacs nvim"
 alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
-alias vi='nvim-lazy'
-alias v='nvim-lazy'
+alias vi='nvim'
+alias v='nvim'
 
 alias server='python -m http.server'
 
