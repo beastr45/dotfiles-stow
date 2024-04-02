@@ -4,3 +4,6 @@
 [submodule "nvim/.config/nvim-configs/LazyVim"]
 	path = nvim/.config/nvim-configs/LazyVim
 	url = https://github.com/beastr45/SleepyNvim.git
+[submodule "window_manager/.config/chadwm"]
+	path = window_manager/.config/chadwm
+	url = https://github.com/beastr45/chadderWM.git
