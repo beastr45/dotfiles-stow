@@ -1,8 +1,24 @@
 # add useful commands and one-liners to remember later
 #DO NOT RUN IN BASH
 
-#simple:
-#remove things
-rm -rf
+# ╭──────────────────────────────────────────────────────────╮
+# │                          simple                          │
+# ╰──────────────────────────────────────────────────────────╯
 #better cd
 z {dir}
+
+# ╭──────────────────────────────────────────────────────────╮
+# │                          fixes                           │
+# ╰──────────────────────────────────────────────────────────╯
+# fix keymap and set custom keymap
+localectl set-keymap --no-convert us '' ''  {caps:escape,compose:ralt}
+localectl --no-convert set-keymap /usr/local/share/kbd/keymaps/personal.map '' ''  {caps:escape,compose:ralt}
+# command to generate clangd config files
+make clean; bear -- make
+# ╭──────────────────────────────────────────────────────────╮
+# │                           git                            │
+# ╰──────────────────────────────────────────────────────────╯
+#clone a repo with submodules
+git clone --recurse-submodules
+# update submodules after cloning
+git submodule update --init
