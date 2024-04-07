@@ -31,5 +31,5 @@ XF86AudioLowerVolume
 XF86AudioMute
     ~/scripts/volume.sh mute
 
-super + v; {p,h,l}
+super + v; {p,l,h}
     playerctl {play-pause, next, previous}
