@@ -77,7 +77,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins+=(zsh-vi-mode)
+# plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,30 +123,34 @@ alias c='clear'
 export PATH=/home/bear/Applications:$PATH
 #add scripts folder to the $PATH
 export PATH=/home/bear/scripts:$PATH
-export PATH=/home/bear/scripts/statusbar:$PATH
-#add go to the $PATH
-export PATH=/home/bear/go/bin/:$PATH
-
-export PATH="$HOME/opt/cross/bin:$PATH"
+export MANPAGER=bat
 
 # #rainbow custom prompt :)
 # autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+# PS1=' \[\033[32m\]\u:\w \$\[\033[0m\] '
+PS1=' %F{green}%n:%~ %F{reset}$ '
 
 #neovim switcher script
 alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
 alias nvim-vimacs="NVIM_APPNAME=nvim-configs/Vimacs nvim"
+alias nvim-vimacs="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
 alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
 alias vi='nvim'
 alias v='nvim'
+alias t='tmux'
+alias ta='tmux attach'
+alias cat='bat'
+alias ls='lsd'
+alias ccc='xclip -sel c'
 
 alias server='python -m http.server'
 
 function nvims() {
-  items=("default" "LazyVim" "NvChad" "AstroNvim" "none")
+  items=("default" "LazyVim" "NvChad" "AstroNvim" "none" "NVsoulfire")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
@@ -157,10 +161,14 @@ function nvims() {
   NVIM_APPNAME=nvim-configs/$config nvim $@
 }
 
-eval "$(zoxide init zsh)"
+bindkey -v
 
-eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+# eval "$(starship init zsh)"
+eval "$(mcfly init zsh)"
 
 # [ -z "$TMUX"  ] && { tmux attach -t system|| exec tmux new-session;}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source /home/bear/.config/broot/launcher/bash/br
