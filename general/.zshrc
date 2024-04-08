@@ -170,5 +170,3 @@ eval "$(mcfly init zsh)"
 # [ -z "$TMUX"  ] && { tmux attach -t system|| exec tmux new-session;}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source /home/bear/.config/broot/launcher/bash/br
