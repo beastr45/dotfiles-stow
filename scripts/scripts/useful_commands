@@ -15,6 +15,8 @@ localectl set-keymap --no-convert us '' ''  {caps:escape,compose:ralt}
 localectl --no-convert set-keymap /usr/local/share/kbd/keymaps/personal.map '' ''  {caps:escape,compose:ralt}
 # command to generate clangd config files
 make clean; bear -- make
+# generate .clang-format files for specified code styles
+clang-format -style=mozilla -dump-config > .clang-format
 # ╭──────────────────────────────────────────────────────────╮
 # │                           git                            │
 # ╰──────────────────────────────────────────────────────────╯
