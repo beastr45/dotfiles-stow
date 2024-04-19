@@ -17,6 +17,10 @@ localectl --no-convert set-keymap /usr/local/share/kbd/keymaps/personal.map '' '
 make clean; bear -- make
 # generate .clang-format files for specified code styles
 clang-format -style=mozilla -dump-config > .clang-format
+#disable clang format temporarily
+// clang-format off
+// clang-format on
+
 # ╭──────────────────────────────────────────────────────────╮
 # │                           git                            │
 # ╰──────────────────────────────────────────────────────────╯
