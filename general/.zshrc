@@ -77,7 +77,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins+=(zsh-vi-mode)
+plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,6 +123,8 @@ alias c='clear'
 export PATH=/home/bear/Applications:$PATH
 #add scripts folder to the $PATH
 export PATH=/home/bear/scripts:$PATH
+export PATH="$HOME/opt/cross/bin:$PATH"
+
 export MANPAGER=bat
 
 # #rainbow custom prompt :)
@@ -144,10 +146,15 @@ alias v='nvim'
 alias t='tmux'
 alias ta='tmux attach'
 alias cat='bat'
-alias ls='lsd'
+# alias ls='lsd'
 alias ccc='xclip -sel c'
+alias du='ncdu'
 
 alias server='python -m http.server'
+
+i(){
+  i686-elf-"$@"
+}
 
 function nvims() {
   items=("default" "LazyVim" "NvChad" "AstroNvim" "none" "NVsoulfire")
@@ -165,7 +172,7 @@ bindkey -v
 
 eval "$(zoxide init zsh)"
 # eval "$(starship init zsh)"
-eval "$(mcfly init zsh)"
+# eval "$(mcfly init zsh)"
 
 # [ -z "$TMUX"  ] && { tmux attach -t system|| exec tmux new-session;}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
