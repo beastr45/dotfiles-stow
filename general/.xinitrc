@@ -30,7 +30,6 @@ volctl &
 unclutter &
 keepassxc &
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 #use wmname to fix java applications not rendering properly source is at suckless website not always enabled
 wmname LG3D &
