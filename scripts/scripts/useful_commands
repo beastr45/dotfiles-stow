@@ -28,3 +28,4 @@ clang-format -style=mozilla -dump-config > .clang-format
 git clone --recurse-submodules
 # update submodules after cloning
 git submodule update --init
+patch -p1 < patch.diff
