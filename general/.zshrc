@@ -149,6 +149,9 @@ alias cat='bat'
 # alias ls='lsd'
 alias ccc='xclip -sel c'
 alias du='ncdu'
+alias nf='fastfetch'
+alias spc='speedcrunch'
+
 
 alias server='python -m http.server'
 
