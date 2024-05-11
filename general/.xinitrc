@@ -39,7 +39,7 @@ systemctl --user import-environment DISPLAY &
 dunst &
 # xrdb merge ~/.Xresources &
 #xbacklight -set 10 &
-# # feh --bg-fill ~/Pictures/wall/gruv.png &
+feh --bg-fill ~/Pictures/Wallpapers/*.current &
 
 #change rate of keyboard repitition
 # xset r rate 500 50 &
