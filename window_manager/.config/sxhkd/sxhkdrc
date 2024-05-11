@@ -4,6 +4,8 @@ super + Escape
 super + w
     ~/.config/rofi/scripts/launcher_t6 w
 
+super + shift + u 
+    flameshot gui
 
 super + u
     maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
@@ -17,8 +19,8 @@ super + g; {c,t}
     {firefox --new-tab https://classroom.google.com/u/1/}
     {firefox --new-tab}
 
-super + s
-    ~/scripts/clip2png
+#super + s
+#    ~/scripts/clip2png
 
 XF86MonBrightnessUp
     ~/scripts/screenlight.sh up
@@ -32,4 +34,10 @@ XF86AudioMute
     ~/scripts/volume.sh mute
 
 super + v; {p,l,h}
-    playerctl {play-pause, next, previous}
+    playerctl --player=spotify {play-pause, next, previous}
+    echo cycle pause | socat - "/tmp/mpvsocket"
+#super + v
+#    echo cycle pause | socat - "/tmp/mpvsocket"
+#
+#super + s
+#    mpv --input-ipc-server=/tmp/mpvsocket --no-video --really-quiet https://www.youtube.com/watch?v=jfKfPfyJRdk
