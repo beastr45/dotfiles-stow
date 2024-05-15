@@ -21,6 +21,9 @@ clang-format -style=mozilla -dump-config > .clang-format
 // clang-format off
 // clang-format on
 
+# remove password timeout with root
+faillock --user bear --reset
+
 # ╭──────────────────────────────────────────────────────────╮
 # │                           git                            │
 # ╰──────────────────────────────────────────────────────────╯

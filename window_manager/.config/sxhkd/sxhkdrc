@@ -15,9 +15,10 @@ super + shift + u
 #    setxkbmap -option caps:escape
 #    setxkbmap -option compose:ralt
 
-super + g; {c,t}
+super + g; {c,t,m}
     {firefox --new-tab https://classroom.google.com/u/1/}
     {firefox --new-tab}
+    {firefox --new-tab https://mail.google.com/mail/u/0/#inbox}
 
 #super + s
 #    ~/scripts/clip2png

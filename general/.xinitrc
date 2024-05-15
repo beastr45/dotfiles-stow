@@ -50,8 +50,8 @@ feh --bg-fill ~/Pictures/Wallpapers/*.current &
 
 ~/.config/chadwm/scripts/bar.sh &
 # while type dwm >/dev/null; do dwm && continue || break; done
-# exec dwm
-exec chadwm
+exec dwm
+# exec chadwm
 
 # invoke global X session script
 # . /etc/X11/Xsession

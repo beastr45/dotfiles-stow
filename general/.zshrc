@@ -151,6 +151,7 @@ alias ccc='xclip -sel c'
 alias du='ncdu'
 alias nf='fastfetch'
 alias spc='speedcrunch'
+alias lg='lazygit'
 
 
 alias server='python -m http.server'
