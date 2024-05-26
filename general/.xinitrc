@@ -12,6 +12,7 @@ sxhkd &
 # sleep 1;setxkbmap -option compose:ralt &
 #to change .fehbg just run feh --bg-fill -> whatever
 ~/.fehbg &
+feh --bg-fill ~/Pictures/Wallpapers/*.current &
 #ulauncher &
 
 picom -b --vsync &
@@ -39,7 +40,6 @@ systemctl --user import-environment DISPLAY &
 dunst &
 # xrdb merge ~/.Xresources &
 #xbacklight -set 10 &
-feh --bg-fill ~/Pictures/Wallpapers/*.current &
 
 #change rate of keyboard repitition
 # xset r rate 500 50 &
@@ -50,8 +50,8 @@ feh --bg-fill ~/Pictures/Wallpapers/*.current &
 
 ~/.config/chadwm/scripts/bar.sh &
 # while type dwm >/dev/null; do dwm && continue || break; done
-exec dwm
-# exec chadwm
+# exec dwm
+exec chadwm
 
 # invoke global X session script
 # . /etc/X11/Xsession
