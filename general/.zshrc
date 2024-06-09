@@ -143,6 +143,7 @@ alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
 alias vi='nvim'
 alias v='nvim'
+alias lv='/home/bear/.local/bin/lvim'
 alias t='tmux'
 alias ta='tmux attach'
 alias cat='bat'
