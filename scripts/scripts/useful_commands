@@ -32,3 +32,9 @@ git clone --recurse-submodules
 # update submodules after cloning
 git submodule update --init
 patch -p1 < patch.diff
+
+# ╭──────────────────────────────────────────────────────────╮
+# │                       programming                        │
+# ╰──────────────────────────────────────────────────────────╯
+# clone makefile template repo
+git clone git@github.com:beastr45/BuildConfig.git
