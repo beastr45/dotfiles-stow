@@ -146,14 +146,19 @@ alias v='nvim'
 alias lv='/home/bear/.local/bin/lvim'
 alias t='tmux'
 alias ta='tmux attach'
-alias ccc='xclip -sel c'
 alias nf='fastfetch'
 alias lg='lazygit'
 alias mr='make run'
+alias ed='ed -p$'
+alias cpwd='pwd | xclip -sel c'
+alias ccc='xclip -sel c'
+alias zp='z `xclip -sel clipboard -o`'
 
 
 alias server='python -m http.server'
 
+#macro for gcc cross compile builds
+#syntax: prepend i and space to ld and gcc
 i(){
   i686-elf-"$@"
 }
