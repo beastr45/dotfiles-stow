@@ -24,6 +24,19 @@ clang-format -style=mozilla -dump-config > .clang-format
 # remove password timeout with root
 faillock --user bear --reset
 
+#set theater mode cookie indefinetly on youtube
+document.cookie = 'wide=1; expires='+new Date('3000').toUTCString()+'; path=/';
+
+# disable warnings in gcc and clang with -Wno- prefix
+
+#syntax for a fixed keepassxc config 
+[GUI]
+MinimizeOnClose=true
+MinimizeOnStartup=true
+MinimizeToTray=true
+ShowTrayIcon=true
+TrayIconAppearance=monochrome-light
+
 # ╭──────────────────────────────────────────────────────────╮
 # │                           git                            │
 # ╰──────────────────────────────────────────────────────────╯
