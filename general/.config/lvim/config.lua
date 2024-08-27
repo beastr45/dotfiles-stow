@@ -33,22 +33,32 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
+-- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
+vim.opt.foldenable = false
 
 -- Keymaps
 
 -- Disabled keymaps
 lvim.builtin.which_key.mappings['c'] = {}
+
 local opts = { noremap = true, silent = true }
 -- vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 vim.keymap.set("n", "<leader>o", "o<Esc>", opts)
 vim.keymap.set("n", "<leader>O", "O<Esc>", opts)
+-- lvim.builtin.which_key.mappings['o'] = { "o<Esc>" }
+-- lvim.builtin.which_key.mappings['O'] = { "O<Esc>" }
 
 -- close current buffer with <leader + b + w>
 vim.keymap.set("n", "<leader>bw", ":bw <cr>", { desc = "close buffer" })
+lvim.builtin.which_key.mappings["bw"] = { ":bw <cr>", "Close Buffer" }
 
 -- Move to window using the <ctrl> hjkl keys but with tmux extenstion
+lvim.keys.normal_mode["<C-h>"] = false
+lvim.keys.normal_mode["<C-j>"] = false
+lvim.keys.normal_mode["<C-k>"] = false
+lvim.keys.normal_mode["<C-l>"] = false
 vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Go to upper window", remap = true })
@@ -149,4 +159,3 @@ lvim.plugins = {
 }
 
 -- Plugin function conf
-
