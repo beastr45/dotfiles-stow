@@ -23,6 +23,10 @@ localectl --no-convert set-keymap /usr/local/share/kbd/keymaps/personal.map '' '
 make clean; bear -- make
 # generate .clang-format files for specified code styles
 clang-format -style=mozilla -dump-config > .clang-format
+#comment out 
+# AlwaysBreakAfterDefinitionReturnType: TopLevel
+# AlwaysBreakAfterReturnType: TopLevel
+
 #disable clang format temporarily
 // clang-format off
 // clang-format on
@@ -51,6 +55,8 @@ git clone --recurse-submodules
 # update submodules after cloning
 git submodule update --init
 patch -p1 < patch.diff
+#remove any ignored files in git
+git clean -dfX
 
 # ╭──────────────────────────────────────────────────────────╮
 # │                       programming                        │

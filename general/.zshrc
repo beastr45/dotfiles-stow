@@ -125,19 +125,18 @@ export PATH=/home/bear/Applications:$PATH
 export PATH=/home/bear/scripts:$PATH
 export PATH="$HOME/opt/cross/bin:$PATH"
 
+export SUDO_EDITOR=nvim
 
 # #rainbow custom prompt :)
 # autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-# PS1=' \[\033[32m\]\u:\w \$\[\033[0m\] '
-PS1=' %F{green}%n:%~ %F{reset}$ '
+# PS1=' %F{green}%n:%~ %F{reset}$ '
 
 #neovim switcher script
 alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
-alias nvim-vimacs="NVIM_APPNAME=nvim-configs/Vimacs nvim"
-alias nvim-vimacs="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
+alias nvim-soul="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
 alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
 alias vi='nvim'
@@ -149,20 +148,26 @@ alias nf='fastfetch'
 alias lg='lazygit'
 alias mr='make run'
 alias mc='make clean'
+alias cr='cargo run'
 alias m='make'
 alias ed='ed -p$'
 alias cpwd='pwd | xclip -sel c'
 alias ccc='xclip -sel c'
 alias zp='z `xclip -sel clipboard -o`'
-
-
-alias server='python -m http.server'
+alias sizels='du -sh .*;du -sh *'
+alias wmn='wmname LG3D'
+alias untrash='trash-restore $(trash-list | sort -r | head -n 1 | awk '\''{print $3}'\'')'
+alias cplast='history -1 | awk '\''{$1=""; print $0}'\'' | ccc'
+alias quickserver='python -m http.server'
 
 #macro for gcc cross compile builds
 #syntax: prepend i and space to ld and gcc
 i(){
   i686-elf-"$@"
 }
+
+#export cinnabar path in order to work with mozilla patched which use mercurial
+export PATH="/home/bear/.mozbuild/git-cinnabar:$PATH"
 
 function nvims() {
   items=("default" "LazyVim" "NvChad" "AstroNvim" "none" "NVsoulfire")
@@ -179,9 +184,8 @@ function nvims() {
 bindkey -v
 
 eval "$(zoxide init zsh)"
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 # eval "$(mcfly init zsh)"
 
-# [ -z "$TMUX"  ] && { tmux attach -t system|| exec tmux new-session;}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

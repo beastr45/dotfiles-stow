@@ -4,6 +4,9 @@
 #
 # global xinitrc file, used by all X sessions started by xinit (startx)
 
+
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
 #keyboard shortcuts without recompiling
 sxhkd &
 
@@ -17,7 +20,7 @@ feh --bg-fill ~/Pictures/Wallpapers/*.current &
 
 picom -b --vsync &
 ~/.conky/conky-startup.sh &
-xautolock -time 5 -locker ~/scripts/lockscreen &
+#xautolock -time 5 -locker ~/scripts/lockscreen &
 # slstatus &
 # /home/bear/Applications/filen &
 # filen &
