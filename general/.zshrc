@@ -125,7 +125,6 @@ export PATH=/home/bear/Applications:$PATH
 export PATH=/home/bear/scripts:$PATH
 export PATH="$HOME/opt/cross/bin:$PATH"
 
-export MANPAGER=bat
 
 # #rainbow custom prompt :)
 # autoload -U colors && colors
