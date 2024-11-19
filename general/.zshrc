@@ -1,164 +1,47 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# ╭──────────────────────────────────────────────────────────╮
+# │                 oh-my-zsh configuration                  │
+# ╰──────────────────────────────────────────────────────────╯
+#-----------------------------------------------------------------------
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
+HYPHEN_INSENSITIVE="true"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
+DISABLE_MAGIC_FUNCTIONS="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
+COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
+#-----------------------------------------------------------------------
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
+# ╭──────────────────────────────────────────────────────────╮
+# │                    User configuration                    │
+# ╰──────────────────────────────────────────────────────────╯
+#-----------------------------------------------------------------------
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#custom .zsh configurations 
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-
-#aliases
-alias :q='exit'
-alias q='exit'
-
-alias c='clear'
-
-#add appimages folder to the $PATH
-export PATH=/home/bear/Applications:$PATH
-#add scripts folder to the $PATH
-export PATH=/home/bear/scripts:$PATH
-export PATH="$HOME/opt/cross/bin:$PATH"
-
-export SUDO_EDITOR=nvim
-
-# #rainbow custom prompt :)
-# autoload -U colors && colors
-# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-# PS1=' %F{green}%n:%~ %F{reset}$ '
-
-#neovim switcher script
-alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
-alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
-alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
-alias nvim-soul="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
-alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
-
-alias vi='nvim'
-alias v='nvim'
-alias lv='/home/bear/.local/bin/lvim'
-alias t='tmux'
-alias ta='tmux attach'
-alias nf='fastfetch'
-alias lg='lazygit'
-alias mr='make run'
-alias mc='make clean'
-alias cr='cargo run'
-alias m='make'
-alias ed='ed -p$'
-alias cpwd='pwd | xclip -sel c'
-alias ccc='xclip -sel c'
-alias zp='z `xclip -sel clipboard -o`'
-alias sizels='du -sh .*;du -sh *'
-alias wmn='wmname LG3D'
-alias untrash='trash-restore $(trash-list | sort -r | head -n 1 | awk '\''{print $3}'\'')'
-alias cplast='history -1 | awk '\''{$1=""; print $0}'\'' | ccc'
-alias quickserver='python -m http.server'
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 #macro for gcc cross compile builds
 #syntax: prepend i and space to ld and gcc
@@ -166,9 +49,7 @@ i(){
   i686-elf-"$@"
 }
 
-#export cinnabar path in order to work with mozilla patched which use mercurial
-export PATH="/home/bear/.mozbuild/git-cinnabar:$PATH"
-
+# neovim functions & config
 function nvims() {
   items=("default" "LazyVim" "NvChad" "AstroNvim" "none" "NVsoulfire")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
@@ -180,12 +61,66 @@ function nvims() {
   fi
   NVIM_APPNAME=nvim-configs/$config nvim $@
 }
+#neovim switcher script
+alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
+alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
+alias nvim-soul="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
+alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 
-bindkey -v
+export SUDO_EDITOR=nvim
 
+
+# #rainbow custom prompt :)
+# autoload -U colors && colors
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+# PS1=' %F{green}%n:%~ %F{reset}$ '
+
+
+# ─[ aliases ]──────────────────────────────────────────────────────────
+#useful aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias :q='exit'
+alias q='exit'
+alias c='clear'
+alias v='nvim'
+alias t='tmux'
+alias ta='tmux attach'
+alias mr='make run'
+alias mc='make clean'
+alias m='make'
+alias cpwd='pwd | xclip -sel c'
+alias ccc='xclip -sel c'
+alias zp='z `xclip -sel clipboard -o`'
+#random aliases
+alias vi='nvim'
+alias lv='/home/bear/.local/bin/lvim'
+alias nf='neofetch'
+alias lg='lazygit'
+alias cr='cargo run'
+alias ed='ed -p$'
+alias sizels='du -sh .*;du -sh *'
+alias wmn='wmname LG3D'
+alias untrash='trash-restore $(trash-list | sort -r | head -n 1 | awk '\''{print $3}'\'')'
+alias cplast='history -1 | awk '\''{$1=""; print $0}'\'' | ccc'
+alias quickserver='python -m http.server'
+alias cdsc="z scratch"
+
+#path exports
+export PATH=/home/bear/Applications:$PATH
+export PATH=/home/bear/scripts:$PATH
+export PATH=/opt/nvim-linux64/bin:$PATH
+export PATH="$HOME/opt/cross/bin:$PATH"
+
+#export cinnabar path in order to work with mozilla patched which use mercurial
+export PATH="/home/bear/.mozbuild/git-cinnabar:$PATH"
+
+# enable vi mode this isnt needed if zsh-vi-mode plugin is being used
+# bindkey -v
+#-----------------------------------------------------------------------
+
+#use this to attach shell apps to zsh
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-# eval "$(mcfly init zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
