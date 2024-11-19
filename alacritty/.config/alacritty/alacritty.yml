@@ -62,7 +62,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: none
+  #decorations: none
 
   # Background opacity
   #
@@ -79,7 +79,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Maximized
+  #startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -125,17 +125,17 @@ window:
 #font:
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
-    style: Medium
+    family: FiraCode Nerd Font Propo
+    style: Regular
   bold:
-    family: JetBrainsMono Nerd Font Mono
+    family: FiraCode Nerd Font Propo
     style: Bold 
-  italic:
-    family: JetBrainsMono Nerd Font Mono
-    style: Medium Italic
-  bold_italic:
-    family: JetBrainsMono Nerd Font Mono
-    style: Bold Italic
+#  italic:
+#    family: JetBrainsMono Nerd Font Mono
+#    style: Medium Italic
+#  bold_italic:
+#    family: JetBrainsMono Nerd Font Mono
+#    style: Bold Italic
  
   # Normal (roman) font face
   #normal:
@@ -184,7 +184,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 9
+  #size: 9
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
