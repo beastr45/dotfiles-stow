@@ -63,3 +63,6 @@ git clean -dfX
 # ╰──────────────────────────────────────────────────────────╯
 # clone makefile template repo
 git clone git@github.com:beastr45/BuildConfig.git
+
+#umn vpn command
+sudo openconnect tc-vpn-1.vpn.umn.edu
