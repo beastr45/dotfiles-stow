@@ -119,8 +119,17 @@ export PATH="/home/bear/.mozbuild/git-cinnabar:$PATH"
 
 # enable vi mode this isnt needed if zsh-vi-mode plugin is being used
 # bindkey -v
+
+#change prompt if special chars aren't available
+if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
+  # capable terminal
+  eval "$(starship init zsh)"
+else
+  # might be TTY or some other not very capable terminal
+  # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+  PS1=' %F{green}%n:%~ %F{reset}$ '
+fi
 #-----------------------------------------------------------------------
 
 #use this to attach shell apps to zsh
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
