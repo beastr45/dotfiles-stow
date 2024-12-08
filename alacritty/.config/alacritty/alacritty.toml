@@ -26,27 +26,17 @@ foreground = "#c4c5b5"
 size = 8
 
 [font.bold]
-family = "JetBrainsMono Nerd Font Mono"
+family = "FiraCode Nerd Font Propo"
 style = "Bold"
 
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font Mono"
-style = "Medium Italic"
-
 [font.normal]
-family = "JetBrainsMono Nerd Font Mono"
-# family = "FiraMono Nerd Font Mono"
-style = "Medium"
+family = "FiraCode Nerd Font Propo"
+style = "Regular"
 
 [window]
 decorations = "none"
 dynamic_title = true
 opacity = 1
-startup_mode = "Maximized"
 
 
 [cursor.style]
