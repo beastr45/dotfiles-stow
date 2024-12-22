@@ -11,7 +11,7 @@ critical=20
 while true; do
 
   # If battery is plugged, do stuff
-  battery="/sys/class/power_supply/BAT1"
+  battery="/sys/class/power_supply/BAT0"
   if [ -d $battery ]; then
     capacity=$(cat $battery/capacity)
     status=$(cat $battery/status)

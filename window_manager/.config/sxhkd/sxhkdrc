@@ -32,6 +32,8 @@ XF86AudioLowerVolume
     ~/scripts/volume.sh down
 XF86AudioMute
     ~/scripts/volume.sh mute
+super + shift + l 
+    systemctl sleep
 
 super + v; {p,l,h}
     playerctl --player=spotify {play-pause, next, previous}

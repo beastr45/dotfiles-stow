@@ -10,16 +10,18 @@
 function get_brightness {
     brightnessctl get
 }
+#max brightness on andromeda:
+#96000
 
 
 function send_notification {
-    brightness=$((`get_brightness`/240))
+    brightness=$((`get_brightness`/960))
     # Send the notification
      dunstify -i /home/bear/Pictures/sysicon/brightness-up.png -t 1000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}%"
 }
 
 function send_notification1 {
-    brightness=$((`get_brightness`/240))
+    brightness=$((`get_brightness`/960))
     # Send the notification
      dunstify -i /home/bear/Pictures/sysicon/brightness-down.png -t 1000 -r 2593 -u normal -h int:value:"$brightness" "Brightness: ${brightness}%"
 }
