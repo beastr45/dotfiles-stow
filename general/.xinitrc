@@ -19,7 +19,7 @@ feh --bg-fill ~/Pictures/Wallpapers/*.current &
 #ulauncher &
 
 picom -b --vsync &
-~/.conky/conky-startup.sh &
+~/.config/conky/conky-start.sh &
 xautolock -time 5 -locker ~/scripts/lockscreen &
 # slstatus &
 # /home/bear/Applications/filen &

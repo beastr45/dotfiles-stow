@@ -14,6 +14,7 @@ echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}bYBb%\":\"Qj}bjQb%\")[t%8]+51)>>o
 z {dir}
 #echo return value
 echo $?
+#> means overwrite, >> means append
 
 # ╭──────────────────────────────────────────────────────────╮
 # │                          fixes                           │
@@ -21,6 +22,8 @@ echo $?
 # fix keymap make sure --no-convert is used to preserve vconsole.conf
 sudo localectl --no-convert set-x11-keymap us pc105 '' "caps:escape,compose:ralt"
 #to set custom console keymap edit vconsole.conf
+#see https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration for custom console keyboard
+
 # command to generate clangd config files
 make clean; bear -- make
 # generate .clang-format files for specified code styles
