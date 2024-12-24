@@ -1,4 +1,5 @@
 #!/bin/sh
+#make sure to set .xinitrc to executable or it will not open a xsession sometimes
 
 # /etc/X11/xinit/xinitrc
 #
@@ -7,15 +8,25 @@
 
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
+#one shots shouldnt de daemonized
 #keyboard shortcuts without recompiling
+xbacklight -set 1
+setxkbmap -option caps:escape
+setxkbmap -option compose:ralt
+#to change .fehbg just run feh --bg-fill -> whatever
+~/.fehbg
+feh --bg-fill ~/Pictures/Wallpapers/*.current
+
+wmname LG3D
+
+#enable dunst notifs y exposing DISPLAY variable and fixes a lot of other things
+systemctl --user import-environment DISPLAY
+
 sxhkd &
 
 # Map capslock key to escape
-sleep 1;setxkbmap -option caps:escape &
-sleep 1;setxkbmap -option compose:ralt &
-#to change .fehbg just run feh --bg-fill -> whatever
-~/.fehbg &
-feh --bg-fill ~/Pictures/Wallpapers/*.current &
+# sleep 1;setxkbmap -option caps:escape &
+# sleep 1;setxkbmap -option compose:ralt &
 #ulauncher &
 
 picom -b --vsync &
@@ -33,13 +44,11 @@ nm-applet &
 volctl &
 unclutter &
 keepassxc &
+redshift &
 
 
 #use wmname to fix java applications not rendering properly source is at suckless website not always enabled
-wmname LG3D &
 
-#enable dunst notifs y exposing DISPLAY variable and fixes a lot of other things
-systemctl --user import-environment DISPLAY &
 dunst &
 # xrdb merge ~/.Xresources &
 #xbacklight -set 10 &
