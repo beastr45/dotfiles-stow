@@ -1,0 +1,3 @@
+#! /usr/bin/bash
+
+ln -s ~/.config/clangd/clang-format .clang-format
