@@ -44,7 +44,7 @@ nm-applet &
 volctl &
 unclutter &
 keepassxc &
-redshift &
+redshift-gtk &
 
 
 #use wmname to fix java applications not rendering properly source is at suckless website not always enabled

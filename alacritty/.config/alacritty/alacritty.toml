@@ -34,7 +34,7 @@ family = "FiraCode Nerd Font Propo"
 style = "Regular"
 
 [window]
-decorations = "none"
+#decorations = "none"
 dynamic_title = true
 opacity = 1
 

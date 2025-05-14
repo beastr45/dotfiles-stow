@@ -7,6 +7,9 @@ super + w
 super + shift + u 
     flameshot gui
 
+super + o
+    xdotool search --classname obsidian windowactivate
+
 super + u
     maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
 super + shift + u
@@ -32,7 +35,7 @@ XF86AudioLowerVolume
     ~/scripts/volume.sh down
 XF86AudioMute
     ~/scripts/volume.sh mute
-super + shift + l 
+super + ctrl + q
     systemctl sleep
 
 super + v; {p,l,h}

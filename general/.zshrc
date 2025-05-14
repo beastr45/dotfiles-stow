@@ -22,7 +22,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins+=(zsh-vi-mode)
+plugins+=(zsh-vi-mode git exercism)
 
 source $ZSH/oh-my-zsh.sh
 #-----------------------------------------------------------------------
@@ -49,7 +49,7 @@ i(){
   i686-elf-"$@"
 }
 
-# neovim functions & config
+#neovim switcher script
 function nvims() {
   items=("default" "LazyVim" "NvChad" "AstroNvim" "none" "NVsoulfire")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
@@ -61,12 +61,18 @@ function nvims() {
   fi
   NVIM_APPNAME=nvim-configs/$config nvim $@
 }
-#neovim switcher script
+
+# neovim aliases
 alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=nvim-configs/AstroNvim nvim"
 alias nvim-soul="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
 alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
+alias nvim-kick="NVIM_APPNAME=nvim-configs/kickstart nvim"
+
+#Change the currently active default using aliases
+#(try to update manually for sudoedit to work regardless)
+alias vd="nvim-lazy"
 
 export SUDO_EDITOR=nvim
 
@@ -85,7 +91,8 @@ alias l='ls -CF'
 alias :q='exit'
 alias q='exit'
 alias c='clear'
-alias v='nvim'
+alias v='~/Applications/nvim-linux-x86_64.appimage'
+alias vi='vd'
 alias t='tmux'
 alias ta='tmux attach'
 alias mr='make run'
@@ -94,19 +101,29 @@ alias m='make'
 alias cpwd='pwd | xclip -sel c'
 alias ccc='xclip -sel c'
 alias zp='z `xclip -sel clipboard -o`'
-alias vi='nvim'
 alias lv='/home/bear/.local/bin/lvim'
 # alias nf='neofetch'
 alias nf='fastfetch'
 alias lg='lazygit'
 alias cr='cargo run'
-alias ed='ed -p$'
-alias sizels='du -sh .*;du -sh *'
-alias wmn='wmname LG3D'
+alias ct='cargo test'
+alias sls='du -sh .*;du -sh *'
 alias untrash='trash-restore $(trash-list | sort -r | head -n 1 | awk '\''{print $3}'\'')'
 alias cplast='history -1 | awk '\''{$1=""; print $0}'\'' | ccc'
 alias quickserver='python -m http.server'
 alias cdsc="z scratch"
+alias ccmp="commentCP"
+
+alias wmf="wmname LG3D"
+
+# TODO write a script to auto detect build systems
+# Some meson shortcuts
+alias mesco="meson compile -C build"
+alias meru="./build/output"
+
+#epic music :)
+alias lofi="nohup ~/scripts/LofiGirlStudyPlay.sh &"
+alias lofi_stop="~/scripts/LofiGirlStudyKill.sh"
 
 #path exports
 export PATH=/home/bear/Applications:$PATH
@@ -117,10 +134,14 @@ export PATH="$HOME/opt/cross/bin:$PATH"
 #export cinnabar path in order to work with mozilla patched which use mercurial
 export PATH="/home/bear/.mozbuild/git-cinnabar:$PATH"
 
+# sccache for rust builds
+# export RUSTC_WRAPPER=sccache
+
+
 # enable vi mode this isnt needed if zsh-vi-mode plugin is being used
 # bindkey -v
 
-#change prompt if special chars aren't available
+#change prompt to green if special chars aren't available
 if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
   # capable terminal
   eval "$(starship init zsh)"
@@ -131,5 +152,15 @@ else
 fi
 #-----------------------------------------------------------------------
 
-#use this to attach shell apps to zsh
+# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+
+# Source the python virtual environment
+# TO create a new one run python3 -m venv .venv
+# Make sure to always use the -m pip flag
+source ~/.venv/bin/activate 
+
+#use eval to attach shell apps to zsh
 eval "$(zoxide init zsh)"
+
+# Created by `pipx` on 2025-02-16 20:08:41
+export PATH="$PATH:/home/bear/.local/bin"
