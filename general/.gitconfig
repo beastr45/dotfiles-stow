@@ -1,3 +1,12 @@
 [user]
    name = Bear BlinSchauer
     email = bearweston07@gmail.com
+	signingkey = /home/bear/.ssh/id_ed25519.pub
+[gpg "ssh"]
+	allowedSignersFile = /home/bear/.ssh/allowed_signers
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
