@@ -10,4 +10,4 @@ fi
 echo $name
 
 
-xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/screenshots/$name.png" # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.
+xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/Screenshots/$name.png" # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.

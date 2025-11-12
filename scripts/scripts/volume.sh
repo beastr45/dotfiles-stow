@@ -19,7 +19,7 @@ function send_notification {
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
     # Send the notification
-    #dunstify -i /home/bear/Pictures/sysicon/volume-up.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    dunstify -i /home/bear/Pictures/sysicon/volume-up.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 
 function send_notification1 {
@@ -28,7 +28,7 @@ function send_notification1 {
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $(($volume / 2)) | sed 's/[0-9]//g')
     # Send the notification
-    #dunstify -i /home/bear/Pictures/sysicon/volume-down.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
+    dunstify -i /home/bear/Pictures/sysicon/volume-down.png -t 1000 -r 2593 -u normal -h int:value:"$volume" "Volume: ${volume}%"
 }
 
 case $1 in
@@ -40,7 +40,7 @@ case $1 in
 	if is_mute ; then
 	    pactl set-sink-volume @DEFAULT_SINK@ +5%
 	    pactl set-sink-mute @DEFAULT_SINK@ toggle
-        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
+        dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
 	else
 	    pactl set-sink-volume @DEFAULT_SINK@ +5%
 	    send_notification
@@ -52,7 +52,7 @@ case $1 in
 	# send_notification1
 	if is_mute ; then
 	    pactl set-sink-volume @DEFAULT_SINK@ 0%
-        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
+        dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Muted 0%"
 	else
 	    pactl set-sink-volume @DEFAULT_SINK@ -5%
 	    send_notification1
@@ -64,7 +64,7 @@ case $1 in
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 	if is_mute ; then
         nop
-        #dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Mute"
+        dunstify -i /home/bear/Pictures/sysicon/mute.png -t 1000 -r 2593 -u normal "Volume: Mute"
 	else
 	    send_notification
 	fi

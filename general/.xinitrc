@@ -1,12 +1,20 @@
 #!/bin/sh
-#make sure to set .xinitrc to executable or it will not open a xsession sometimes
+#make sure to set .xinitrc to executable or it will not open an X session
+
+#change this to the password of the thing.
+# exec vncviewer -passwd <(vncpasswd -f <<<"{passwd}") localhost:9901
+#
+# exit
 
 # /etc/X11/xinit/xinitrc
 #
 # global xinitrc file, used by all X sessions started by xinit (startx)
 
+# set wacom pad bindings
+xsetwacom set "Wacom Intuos BT S Pad pad" Button 1 "key ctrl z"
 
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+lxpolkit &
 
 #one shots shouldnt de daemonized
 #keyboard shortcuts without recompiling
@@ -30,7 +38,7 @@ sxhkd &
 #ulauncher &
 
 picom -b --vsync &
-~/.config/conky/conky-start.sh &
+# ~/.config/conky/conky-start.sh &
 xautolock -time 5 -locker ~/scripts/lockscreen &
 # slstatus &
 # /home/bear/Applications/filen &

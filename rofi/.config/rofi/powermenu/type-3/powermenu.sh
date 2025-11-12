@@ -73,10 +73,10 @@ run_cmd() {
 				i3-msg exit
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-            else
-                killall bar.sh
-                killall lowbatteryremind.sh
-                dwmc quit
+			else
+            		    killall bar.sh
+            		    killall lowbatteryremind.sh
+            		    dwmc quit
 			fi
 		fi
 	else

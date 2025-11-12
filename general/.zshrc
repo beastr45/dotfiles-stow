@@ -22,13 +22,33 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins+=(zsh-vi-mode git exercism)
+plugins+=(git exercism zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 #-----------------------------------------------------------------------
+# ╭──────────────────────────────────────────────────────────╮
+# │                   Zplug configuration                    │
+# ╰──────────────────────────────────────────────────────────╯
+#-----------------------------------------------------------------------
+# source ~/.zplug/init.zsh
+#
+# zplug "jeffreytse/zsh-vi-mode"
+#
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+#
+# # Install plugins if there are plugins that have not been installed
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
 
+# Then, source plugins and add commands to $PATH
+# zplug load
+# zplug load --verbose
 
-
+#-----------------------------------------------------------------------
 # ╭──────────────────────────────────────────────────────────╮
 # │                    User configuration                    │
 # ╰──────────────────────────────────────────────────────────╯
@@ -61,7 +81,6 @@ function nvims() {
   fi
   NVIM_APPNAME=nvim-configs/$config nvim $@
 }
-
 # neovim aliases
 alias nvim-lazy="NVIM_APPNAME=nvim-configs/LazyVim nvim"
 alias nvim-chad="NVIM_APPNAME=nvim-configs/NvChad nvim"
@@ -70,18 +89,12 @@ alias nvim-soul="NVIM_APPNAME=nvim-configs/NVsoulfire nvim"
 alias nvim-none="NVIM_APPNAME=nvim-configs/none nvim"
 alias nvim-kick="NVIM_APPNAME=nvim-configs/kickstart nvim"
 
-#Change the currently active default using aliases
-#(try to update manually for sudoedit to work regardless)
-alias vd="nvim-lazy"
-
 export SUDO_EDITOR=nvim
-
 
 # #rainbow custom prompt :)
 # autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 # PS1=' %F{green}%n:%~ %F{reset}$ '
-
 
 # ─[ aliases ]──────────────────────────────────────────────────────────
 #useful aliases
@@ -91,16 +104,14 @@ alias l='ls -CF'
 alias :q='exit'
 alias q='exit'
 alias c='clear'
-alias v='~/Applications/nvim-linux-x86_64.appimage'
+# alias v='~/Applications/nvim-linux-x86_64.appimage'
+alias v='nvim'
 alias vi='vd'
 alias t='tmux'
 alias ta='tmux attach'
 alias mr='make run'
 alias mc='make clean'
 alias m='make'
-alias cpwd='pwd | xclip -sel c'
-alias ccc='xclip -sel c'
-alias zp='z `xclip -sel clipboard -o`'
 alias lv='/home/bear/.local/bin/lvim'
 # alias nf='neofetch'
 alias nf='fastfetch'
@@ -112,9 +123,22 @@ alias untrash='trash-restore $(trash-list | sort -r | head -n 1 | awk '\''{print
 alias cplast='history -1 | awk '\''{$1=""; print $0}'\'' | ccc'
 alias quickserver='python -m http.server'
 alias cdsc="z scratch"
-alias ccmp="commentCP"
 
 alias wmf="wmname LG3D"
+
+alias wacomsetup="~/.config/wacom-settings.sh"
+
+alias cocaine="sudo cpupower frequency-set -g performance"
+alias heroin="sudo cpupower frequency-set -g powersave"
+alias clkh=" lscpu | grep 'MHz'; cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+alias batstat="upower -i $(upower -e | grep BAT)"
+
+# mnemonic names for quickly refrencing helpful cheatSheets
+# use cs prefix
+alias pt="feh ~/Pictures/cheatSheets/periodicTable.png"
+alias cschn="feh ~/Pictures/cheatSheets/chemNameRefrence.png"
+alias csr="feh ~/Pictures/cheatSheets/engineering/resistorCheatsheet.png"
+
 
 # TODO write a script to auto detect build systems
 # Some meson shortcuts
@@ -125,7 +149,39 @@ alias meru="./build/output"
 alias lofi="nohup ~/scripts/LofiGirlStudyPlay.sh &"
 alias lofi_stop="~/scripts/LofiGirlStudyKill.sh"
 
-#path exports
+alias ccmp="commentCP"
+alias cpwd='pwd | xclip -sel c'
+alias ccc='xclip -sel c'
+alias zp='z `xclip -sel clipboard -o`'
+alias clip2qr="xclip -selection clipboard -o | qrencode -t ansiutf8"
+# this is an awesome command when paired with a screenshot tool <3 <3 <3
+alias clipview="xclip -selection clipboard -t image/png -o > /tmp/clip.png && feh /tmp/clip.png"
+
+alias fm="yazi"
+alias gpp="g++"
+alias za="zathura"
+alias zae="zathura /home/bear/Documents/books/2textbooks/Electric\ Circuits,\ 12e.pdf"
+alias zad="zathura /home/bear/Documents/books/2textbooks/Differential\ equations\ and\ linear\ algebra\ Pearson.pdf"
+alias zal="zathura /home/bear/Documents/books/2textbooks/EE2301\ Digital\ System\ Textbook.pdf"
+alias zac="zathura /home/bear/Documents/books/2textbooks/Chemistry_\ The\ Molecular\ Nature\ Of\ Matter\ And\ Change\ ISE\ --\ Martin.pdf"
+alias zap="zathura /home/bear/Documents/books/2textbooks/PhysicsSolns.pdf"
+function zao() {
+  url="$1"
+  tmpfile=$(mktemp --suffix=.pdf)
+  curl -L -o "$tmpfile" "$url" && zathura "$tmpfile"
+  rm -f "$tmpfile"
+}
+function stash(){
+  file="$1"
+  mv $file ~/
+}
+
+# Remote into phone automations via adb, must be paired over wifi first, can use tailscale for this.
+alias rph="~/scripts/phoneshenanigans/remotephone.sh"
+alias uph="~/scripts/phoneshenanigans/unlockphone.sh"
+alias duo="~/scripts/phoneshenanigans/phoneduologin.sh"
+
+# ─[ path exports ]─────────────────────────────────────────────────────
 export PATH=/home/bear/Applications:$PATH
 export PATH=/home/bear/scripts:$PATH
 export PATH=/opt/nvim-linux64/bin:$PATH
@@ -155,8 +211,9 @@ fi
 # export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 
 # Source the python virtual environment
+# this allows you to install python CLIs without pesky arch packaging getting in the way.
 # TO create a new one run python3 -m venv .venv
-# Make sure to always use the -m pip flag
+# Make sure to always use the {-m} pip flag
 source ~/.venv/bin/activate 
 
 #use eval to attach shell apps to zsh
