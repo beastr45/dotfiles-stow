@@ -7,8 +7,9 @@ super + w
 super + shift + u 
     flameshot gui
 
-super + o
-    xdotool search --classname obsidian windowactivate
+super + o; {o,f}
+    {xdotool search --classname obsidian windowactivate}
+    firefox}
 
 super + u
     maim -u --select -D -l -c 0.3,0.4,0.6,0.4 | xclip -selection clipboard -t image/png
@@ -18,9 +19,10 @@ super + shift + u
 #    setxkbmap -option caps:escape
 #    setxkbmap -option compose:ralt
 
-super + g; {c,m}
-    {firefox --new-tab https://classroom.google.com/u/1/}
-    {firefox --new-tab https://mail.google.com/mail/u/0/#inbox}
+super + g; {c,m,g}
+    {firefox --new-tab https://calendar.google.com/calendar/u/0/,
+    firefox --new-tab https://mail.google.com/mail/u/0/#inbox,
+    firefox --new-tab https://gemini.google.com/app}
 
 #super + s
 #    ~/scripts/clip2png
@@ -37,6 +39,13 @@ XF86AudioMute
     ~/scripts/volume.sh mute
 super + ctrl + q
     systemctl sleep
+
+#xinput disable "DELL0A36:00 0488:101A Touchpad"
+
+# Toggle touchpad on/off
+# This can be useful when freewriting since trying to do it automatically is finicky
+super + alt + t
+    bash -c 'id=$(xinput list --id-only "DELL0A36:00 0488:101A Touchpad"); state=$(xinput list-props $id | grep "Device Enabled" | grep -o "[01]$"); [ "$state" = "1" ] && xinput disable $id || xinput enable $id'
 
 super + v; {p,l,h}
     playerctl --player=spotify {play-pause, next, previous}

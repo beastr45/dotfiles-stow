@@ -1,13 +1,37 @@
 #!/usr/bin/bash
 
-echo "enter name leave blank for timestamp"
-read name
+# usage: ./script.sh [-s /path/to/save.png]
 
-if test -z "$name"; then
-    echo "name is empty"
-    name="$(date +%Y-%m-%d_%T)"
+save_path=""
+while getopts "s:" opt; do
+    case "$opt" in
+        s) save_path="$OPTARG" ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ -z "$save_path" ]; then
+    echo "enter name leave blank for timestamp"
+    read name
+
+    if test -z "$name"; then
+        echo "name is empty using datetime to name file"
+        name="$(date +%Y-%m-%d_%T)"
+    fi
+
+    save_path="/home/bear/Pictures/Screenshots/$name.png"
 fi
-echo $name
 
+xclip -selection clipboard -t image/png -o > "$save_path"
 
-xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/Screenshots/$name.png" # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.
+# echo "enter name leave blank for timestamp"
+# read name
+#
+# if test -z "$name"; then
+#     echo "name is empty"
+#     name="$(date +%Y-%m-%d_%T)"
+# fi
+# echo $name
+#
+#
+# xclip -selection clipboard -t image/png -o > "/home/bear/Pictures/Screenshots/$name.png" # Use "Screenshot from $(date "+%Y-%m-%d %H-%M-%S").png" if you like GNOME filename format.

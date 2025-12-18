@@ -154,6 +154,7 @@ alias cpwd='pwd | xclip -sel c'
 alias ccc='xclip -sel c'
 alias zp='z `xclip -sel clipboard -o`'
 alias clip2qr="xclip -selection clipboard -o | qrencode -t ansiutf8"
+alias qr2clip='xclip -selection clipboard -t image/png -o | zbarimg --quiet --raw - | xclip -selection clipboard'
 # this is an awesome command when paired with a screenshot tool <3 <3 <3
 alias clipview="xclip -selection clipboard -t image/png -o > /tmp/clip.png && feh /tmp/clip.png"
 
@@ -164,7 +165,7 @@ alias zae="zathura /home/bear/Documents/books/2textbooks/Electric\ Circuits,\ 12
 alias zad="zathura /home/bear/Documents/books/2textbooks/Differential\ equations\ and\ linear\ algebra\ Pearson.pdf"
 alias zal="zathura /home/bear/Documents/books/2textbooks/EE2301\ Digital\ System\ Textbook.pdf"
 alias zac="zathura /home/bear/Documents/books/2textbooks/Chemistry_\ The\ Molecular\ Nature\ Of\ Matter\ And\ Change\ ISE\ --\ Martin.pdf"
-alias zap="zathura /home/bear/Documents/books/2textbooks/PhysicsSolns.pdf"
+alias zap="zathura /home/bear/Documents/books/2textbooks/PhysTextbook.pdf"
 function zao() {
   url="$1"
   tmpfile=$(mktemp --suffix=.pdf)
