@@ -129,6 +129,61 @@ Format all of the source code with rust-fmt
 
 ## Linux
 
+Forward usb devices over the internet
+```sh
+
+# --- (USB host) ---
+
+#First check if usbip module is loaded
+lsmod | grep usbip
+# Load kernel modules
+sudo modprobe usbip-core
+sudo modprobe usbip-host
+#Make sure module get loaded at boot. (if not already)
+echo usbip-host | sudo tee /etc/modules-load.d/usbip.conf
+
+# Start usbip daemon
+sudo systemctl enable --now usbipd
+
+# List USB devices
+usbip list -l
+
+# Bind device (make it available over network)
+sudo usbip bind -b <BUSID>
+
+# Unbind device (return to local host)
+sudo usbip unbind -b <BUSID>
+
+
+# --- (USB client) ---
+
+#First check if the module is loaded
+lsmod | grep vhci_hcd
+# Load kernel module
+sudo modprobe vhci-hcd
+#Make sure module get loaded at boot. (if not already)
+echo vhci-hcd | sudo tee /etc/modules-load.d/usbip.conf
+
+# List remote devices
+usbip list -r <ARCH_IP>
+
+# Attach device (make remote USB appear local)
+sudo usbip attach -r <ARCH_IP> -b <BUSID>
+
+# Detach device
+usbip port           # list attached devices and port numbers
+sudo usbip detach -p <PORT>
+
+# Make sure that tcp port 3240 is accessible to vpn.
+#Below is how to add a port or whitelist an interface on fedora linux.
+sudo firewall-cmd --add-port=3240/tcp --permanent
+#OR
+sudo firewall-cmd --zone=trusted --add-interface=tailscale0 --permanent
+#Then
+sudo firewall-cmd --reload
+
+```
+
 Remove password timeout while logged into root
 
 ```sh
