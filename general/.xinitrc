@@ -52,10 +52,13 @@ nm-applet &
 volctl &
 unclutter &
 keepassxc &
-redshift-gtk &
+# redshift-gtk &
+redshift -P -O 4500
+nextcloud &
 
 
 #use wmname to fix java applications not rendering properly source is at suckless website not always enabled
+wmname LG3D
 
 dunst &
 # xrdb merge ~/.Xresources &
@@ -68,10 +71,11 @@ dunst &
 # syndaemon -i 3 -t -K -R &
 #
 
-~/.config/chadwm/scripts/bar.sh &
+~/.config/chadwm/scripts/bar.sh & #FIX: move to the amberwm patch
+
 # while type dwm >/dev/null; do dwm && continue || break; done
-# exec dwm
+#exec dwm
 exec chadwm
 
 # invoke global X session script
-# . /etc/X11/Xsession
+# ./etc/X11/Xsession 

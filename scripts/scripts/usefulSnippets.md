@@ -5,23 +5,24 @@ I want to remember. Taken from an obsidian note.
 
 ## Simple/Shell
 
->[!warning] \> means overwrite, \>\> means append
-
-better cd, install zoxide
+>[!warning] > means overwrite, >> means append
 
 ```sh
+#better cd, install zoxide
 z {dir}
-```
 
-echo return value
-
-```sh
+#echo return value
 echo $?
-```
 
-Run a makefile with all threads activated
-```sh 
+#Run a makefile with all threads activated
 make -j$(nproc)
+
+#make stderr pipe to stdout instead of the terminal. Useful for ccc alias
+<command> 2>&1 | <other command>
+
+#list absolute directory name with ls
+ls -d $PWD/*
+
 ```
 
 
